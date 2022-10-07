@@ -1,16 +1,30 @@
 package service;
 
 import model.User;
-import repository.UserRepository;
+import repository.UserDao;
+
+import java.util.List;
 
 public class UserService {
-    private final UserRepository userRepository;
+    private final UserDao userDao;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
     }
 
-    public boolean signIn(final String username, final String password) {
-        return userRepository.userIsExist(username, password);
+    public boolean userIsExist(final String username, final String password) {
+        return userDao.userIsExist(username, password);
+    }
+
+    public void signUp(final String username, final String password) {
+        userDao.save(username, password);
+    }
+
+    public List<User> getAllUsers() {
+        return userDao.getAll();
+    }
+
+    public List<User> filterUsers(String prefix) {
+        return userDao.filterUsers(prefix);
     }
 }
