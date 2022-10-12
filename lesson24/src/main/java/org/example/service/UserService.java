@@ -1,7 +1,7 @@
-package service;
+package org.example.service;
 
-import model.User;
-import repository.UserDao;
+import org.example.model.User;
+import org.example.repository.UserDao;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class UserService {
     }
 
     public boolean userIsExist(final String username, final String password) {
-        return userDao.userIsExist(username, password);
+        return userDao.isExist(username, password);
     }
 
     public void signUp(final String username, final String password) {

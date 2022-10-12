@@ -1,10 +1,10 @@
-package listener;
+package org.example.listener;
 
+import org.example.repository.UserDao;
+import org.example.repository.UserRepository;
+import org.example.utils.HibernateUtil;
 import org.hibernate.SessionFactory;
-import repository.UserDao;
-import repository.UserRepository;
-import service.UserService;
-import utils.HibernateUtil;
+import org.example.service.UserService;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class DependencyInitializationContextListener implements ServletContextListener {
-
   @Override
   public void contextInitialized(final ServletContextEvent sce) {
     try {

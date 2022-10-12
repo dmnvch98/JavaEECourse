@@ -1,6 +1,6 @@
-package servlet;
+package org.example.servlet;
 
-import service.UserService;
+import org.example.service.UserService;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

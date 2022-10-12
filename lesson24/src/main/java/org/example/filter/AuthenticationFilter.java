@@ -1,4 +1,4 @@
-package filter;
+package org.example.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -23,9 +23,8 @@ public class AuthenticationFilter implements Filter {
         final HttpServletResponse res = (HttpServletResponse) response;
         final HttpSession session = req.getSession();
 
-        final String username = (String) session.getAttribute("username");
-        final String password = (String) session.getAttribute("password");
-        if (nonNull(username) && nonNull(password)) {
+        final Boolean isLoggedIn = (Boolean) session.getAttribute("isLoggedIn");
+        if (isLoggedIn != null) {
             chain.doFilter(request, response);
             res.sendRedirect("/allUsers");
         } else {

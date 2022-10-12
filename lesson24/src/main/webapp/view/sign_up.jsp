@@ -1,22 +1,38 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>signUp</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="styles/sign_in_style.css" rel="stylesheet">
+    <title>Hello, world!</title>
 </head>
 <body>
-<style><%@include file="styles/sign_in_style.css" %></style>
-<form method="post" action="/signUp">
-    <div class="box">
-        <h1>Sign up</h1>
-        <input type="username" name="username" placeholder="username" class="username"/>
-        <input type="password" name="password" placeholder="password" class="password"/>
-        <input type="submit" value="Submit" class="btn signUp-btn"/>
-        <a href="/signIn">
-            <div id="btn2">Sign In</div>
-        </a>
+<div class="container-fluid d-flex align-items-center justify-content-center" style="height: 70vh">
+    <div class="row col-lg-3 col-md-6 col-xl-3">
+        <h2 class="mb-3">Sign ip</h2>
+        <form method="post" action="/myapp/signUp">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input class="form-control" id="username" aria-describedby="emailHelp" name="username">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <div class="btns">
+                <a href="myapp/signIn" class="btn btn-outline-primary">Sign in</a>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
     </div>
-</form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,10 +1,11 @@
-package repository;
+package org.example.repository;
 
-import model.User;
+import org.example.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepository implements UserDao {
@@ -19,32 +20,18 @@ public class UserRepository implements UserDao {
     @Override
     public void save(final String username, final String password) {
         User user = new User(username, password);
-        Transaction transaction;
         try (Session session = sessionFactory.openSession()) {
-            transaction = session.beginTransaction();
+            Transaction transaction = session.beginTransaction();
             session.save(user);
             transaction.commit();
             listOfUser.add(user);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void update(User value) {
-
-    }
-
-    @Override
-    public void delete(int id) {
-
-    }
-
-    @Override
-    public User get(int id) {
-        return null;
-    }
-
-    @Override
-    public boolean userIsExist(final String username, final String password) {
+    public boolean isExist(final String username, final String password) {
         return listOfUser
                 .stream()
                 .anyMatch(user -> user.getUsername().equals(username) && user.getPassword().equals(password));
@@ -53,16 +40,12 @@ public class UserRepository implements UserDao {
     @Override
     @SuppressWarnings("unchecked")
     public List<User> getAll() {
-        Transaction transaction = null;
-        List<User> listOfUser = null;
+        List<User> listOfUser = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
-            transaction = session.beginTransaction();
+            Transaction transaction = session.beginTransaction();
             listOfUser = session.createQuery("from User").getResultList();
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             e.printStackTrace();
         }
         return listOfUser;
