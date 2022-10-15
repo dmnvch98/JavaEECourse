@@ -15,7 +15,7 @@
 <div class="container-fluid d-flex align-items-center justify-content-center" style="height: 70vh">
     <div class="row col-lg-3 col-md-6 col-xl-3">
         <h2 class="mb-3">Sign ip</h2>
-        <form method="post" action="/myapp/signUp">
+        <form method="post" action="/signup">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input class="form-control" id="username" aria-describedby="emailHelp" name="username">

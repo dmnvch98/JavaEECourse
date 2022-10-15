@@ -5,7 +5,7 @@ docker run --rm \
     -e MYSQL_ROOT_PASSWORD=root \
     -e MYSQL_DATABASE=tms \
     -p 3307:3306 \
-    mysql:latest
+    mysql:8.0.31
 
 docker run --rm \
     --network demo_network \

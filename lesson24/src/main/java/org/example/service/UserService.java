@@ -20,11 +20,7 @@ public class UserService {
         userDao.save(username, password);
     }
 
-    public List<User> getAllUsers() {
-        return userDao.getAll();
-    }
-
-    public List<User> filterUsers(String prefix) {
+    public List<User> getAllFilteredUsers(String prefix) {
         return userDao.filterUsers(prefix);
     }
 }
