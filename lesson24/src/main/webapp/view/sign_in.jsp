@@ -15,7 +15,7 @@
 <div class="container-fluid d-flex align-items-center justify-content-center" style="height: 70vh">
     <div class="row col-lg-3 col-md-6 col-xl-3">
         <h2 class="mb-3">Sign ip</h2>
-        <form method="post" action="myapp/signIn">
+        <form method="post" action="/signin">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input class="form-control" id="username" aria-describedby="emailHelp" name="username">
@@ -25,7 +25,7 @@
                 <input type="password" class="form-control" id="password" name="password">
             </div>
             <div class="btns">
-                <a href="${pageContext.request.contextPath}/signUp" class="btn btn-outline-primary">Sign up</a>
+                <a href="/signup" class="btn btn-outline-primary">Sign up</a>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>

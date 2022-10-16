@@ -25,7 +25,7 @@
                 <input type="password" class="form-control" id="password" name="password">
             </div>
             <div class="btns">
-                <a href="myapp/signIn" class="btn btn-outline-primary">Sign in</a>
+                <a href="/signin" class="btn btn-outline-primary">Sign in</a>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>

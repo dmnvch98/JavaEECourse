@@ -31,9 +31,9 @@ public class SignUpServlet extends HttpServlet {
         if (!(username.isEmpty() && password.isEmpty())) {
             userService.signUp(username, password);
             req.getSession().setAttribute("isLoggedIn", true);
-            getServletContext().getRequestDispatcher("/allUsers").forward(req, resp);
+            resp.sendRedirect("/allusers");
         } else {
-            getServletContext().getRequestDispatcher("/signUp").forward(req, resp);
+            resp.sendRedirect("/sign_up.jsp");
         }
     }
 }

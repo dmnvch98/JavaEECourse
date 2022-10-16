@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import static java.util.Objects.nonNull;
 
-@WebFilter(urlPatterns = "/allUsers")
+@WebFilter(urlPatterns = "/allusers")
 public class AuthenticationFilter implements Filter {
 
     @Override
@@ -24,11 +24,10 @@ public class AuthenticationFilter implements Filter {
         final HttpSession session = req.getSession();
 
         final Boolean isLoggedIn = (Boolean) session.getAttribute("isLoggedIn");
-        if (isLoggedIn != null) {
+        if (nonNull(isLoggedIn)) {
             chain.doFilter(request, response);
-            res.sendRedirect("/allUsers");
         } else {
-            res.sendRedirect("/signIn");
+            res.sendRedirect("view/sign_in.jsp");
         }
     }
 

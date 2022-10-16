@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "signIn", value = "/signIn")
+@WebServlet(name = "signIn", value = "/signin")
 public class SignInServlet extends HttpServlet {
     private UserService userService;
 
@@ -22,7 +22,7 @@ public class SignInServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.sendRedirect("view/sign_in.jsp");
+        resp.sendRedirect("/view/sign_in.jsp");
     }
 
     @Override
@@ -32,9 +32,8 @@ public class SignInServlet extends HttpServlet {
 
         if (userService.userIsExist(username, password)) {
             req.getSession().setAttribute("isLoggedIn", true);
-            getServletContext().getRequestDispatcher("/allUsers").forward(req, resp);
-        } else {
-            getServletContext().getRequestDispatcher("/signIn").forward(req, resp);
         }
+
+        resp.sendRedirect("/allusers");
     }
 }

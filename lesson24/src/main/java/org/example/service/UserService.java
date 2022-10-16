@@ -21,6 +21,11 @@ public class UserService {
     }
 
     public List<User> getAllFilteredUsers(String prefix) {
-        return userDao.filterUsers(prefix);
+        if (prefix != null) {
+            return userDao.filterUsers(prefix);
+        }
+        else {
+            return userDao.getAll();
+        }
     }
 }
