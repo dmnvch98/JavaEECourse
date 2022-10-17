@@ -12,12 +12,16 @@ public class UserService {
         this.userDao = userDao;
     }
 
-    public boolean userIsExist(final String username, final String password) {
+    public boolean isExist(final String username, final String password) {
         return userDao.isExist(username, password);
     }
 
-    public void signUp(final String username, final String password) {
+    public boolean signUp(final String username, final String password) {
+        if (isExist(username, password)) {
+            throw new RuntimeException("User already exists");
+        }
         userDao.save(username, password);
+        return true;
     }
 
     public List<User> getAllFilteredUsers(String prefix) {
@@ -27,5 +31,9 @@ public class UserService {
         else {
             return userDao.getAll();
         }
+    }
+
+    public User getUser(String username) {
+        return userDao.getUser(username);
     }
 }

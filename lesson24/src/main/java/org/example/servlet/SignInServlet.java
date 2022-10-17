@@ -30,7 +30,7 @@ public class SignInServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        if (userService.userIsExist(username, password)) {
+        if (userService.isExist(username, password)) {
             req.getSession().setAttribute("isLoggedIn", true);
         }
 

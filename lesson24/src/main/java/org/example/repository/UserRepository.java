@@ -56,4 +56,10 @@ public class UserRepository implements UserDao {
         return listOfUser.stream()
                 .filter(u -> u.getUsername().startsWith(prefix)).toList();
     }
+
+    @Override
+    public User getUser(String username) {
+        return listOfUser.stream().filter(u -> u.getUsername().equals(username)).findFirst().orElse(new User());
+    }
+
 }

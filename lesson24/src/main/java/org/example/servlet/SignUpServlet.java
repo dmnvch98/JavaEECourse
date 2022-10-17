@@ -29,11 +29,13 @@ public class SignUpServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         if (!(username.isEmpty() && password.isEmpty())) {
-            userService.signUp(username, password);
-            req.getSession().setAttribute("isLoggedIn", true);
-            resp.sendRedirect("/allusers");
-        } else {
-            resp.sendRedirect("/sign_up.jsp");
+            boolean isUserCreated = userService.signUp(username, password);
+            if (isUserCreated) {
+                resp.sendRedirect("/allusers");
+            }
+            else {
+                resp.sendRedirect("/sign_up.jsp");
+            }
         }
     }
 }
