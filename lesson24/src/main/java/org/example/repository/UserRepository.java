@@ -12,7 +12,7 @@ public class UserRepository implements UserDao {
     private final List<User> listOfUser;
     private final SessionFactory sessionFactory;
 
-    public UserRepository(SessionFactory sessionFactory) {
+    public UserRepository(final SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
         listOfUser = getAll();
     }
@@ -34,7 +34,9 @@ public class UserRepository implements UserDao {
     public boolean isExist(final String username, final String password) {
         return listOfUser
                 .stream()
-                .anyMatch(user -> user.getUsername().equals(username) && user.getPassword().equals(password));
+                .anyMatch(user -> user.getUsername()
+                        .equals(username) && user.getPassword()
+                        .equals(password));
     }
 
     @Override
@@ -52,14 +54,19 @@ public class UserRepository implements UserDao {
     }
 
     @Override
-    public List<User> filterUsers(String prefix) {
+    public List<User> filterUsers(final String prefix) {
         return listOfUser.stream()
                 .filter(u -> u.getUsername().startsWith(prefix)).toList();
     }
 
     @Override
-    public User getUser(String username) {
-        return listOfUser.stream().filter(u -> u.getUsername().equals(username)).findFirst().orElse(new User());
+    public User getUser(final String username) {
+        return listOfUser
+                .stream()
+                .filter(u -> u.getUsername()
+                        .equals(username))
+                .findFirst()
+                .orElse(new User());
     }
 
 }

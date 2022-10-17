@@ -9,7 +9,10 @@ import org.hibernate.service.ServiceRegistry;
 
 import java.util.Properties;
 
-public class HibernateUtil {
+public final class HibernateUtil {
+    private HibernateUtil() {
+    }
+
     private static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory() {
