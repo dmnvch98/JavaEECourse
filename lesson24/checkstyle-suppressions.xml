@@ -8,6 +8,7 @@
     <suppress checks="Javadoc" files="."/>
     <suppress checks="DesignForExtension" files="."/>
     <suppress checks="HiddenField" files="."/>
+    <suppress checks="LineLength" files="."/>
     <suppress checks="LineLength" files="src/main/java/org/example/servlet/SignInServlet.java" lines="26, 31"/>
     <suppress checks="LineLength" files="src/main/java/org/example/servlet/SignUpServlet.java" lines="25, 30"/>
     <suppress checks="LineLength" files="src/main/java/org/example/servlet/AllUsersServlet.java" lines="23, 26, 30"/>

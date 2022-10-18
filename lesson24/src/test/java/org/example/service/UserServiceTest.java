@@ -31,29 +31,5 @@ public class UserServiceTest {
 
     @InjectMocks
     private UserService sut = new UserService(repository);
-//
-//    @Test
-//    public void shouldCreateUser() {
-//        final String username = "username";
-//        final String password = "password";
-//
-//        sut.signUp(username, password);
-//    }
-
-//    @Test
-//    public void shouldThrowExceptionIfUserExists() {
-//        String username = "username";
-//        String password = "password";
-//        final User user = mock(User.class);
-//
-//        //given(repository.getUser(username)).willReturn(user);
-//        when(repository.getUser(username)).thenReturn(user);
-//
-//        RuntimeException actual = assertThrows(
-//                RuntimeException.class, () -> sut.signUp(username, password));
-//
-//        assertThat(actual)
-//                .hasMessage("User already exists");
-//    }
 
 }
