@@ -1,7 +1,6 @@
 package org.example.filter;
 
 import javax.servlet.Filter;
-import javax.servlet.FilterConfig;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.FilterChain;
@@ -18,10 +17,6 @@ import static java.util.Objects.nonNull;
 public class AuthenticationFilter implements Filter {
 
     @Override
-    public void init(final FilterConfig filterConfig) {
-    }
-
-    @Override
     public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain)
             throws IOException, ServletException {
         final HttpServletRequest req = (HttpServletRequest) request;
@@ -32,7 +27,7 @@ public class AuthenticationFilter implements Filter {
         if (nonNull(isLoggedIn)) {
             chain.doFilter(request, response);
         } else {
-            res.sendRedirect("view/sign_in.jsp");
+            res.sendRedirect(req.getContextPath() + "/view/sign_in.jsp");
         }
     }
 

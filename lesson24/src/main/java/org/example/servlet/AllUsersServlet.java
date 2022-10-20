@@ -27,6 +27,6 @@ public class AllUsersServlet extends HttpServlet {
         List<User> users;
         users = userService.getAllFilteredUsers(req.getParameter("search"));
         req.setAttribute("users", users);
-        getServletContext().getRequestDispatcher("/view/all_users.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher(req.getContextPath() + "/view/all_users.jsp").forward(req, resp);
     }
 }

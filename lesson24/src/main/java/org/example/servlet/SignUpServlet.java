@@ -21,18 +21,20 @@ public class SignUpServlet extends HttpServlet {
                 .getServletContext()
                 .getAttribute("userService");
     }
+
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws IOException {
-        resp.sendRedirect("/view/sign_up.jsp");
+        resp.sendRedirect(req.getContextPath() + "/view/sign_up.jsp");
     }
 
     @Override
-    protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws IOException, ServletException {
+    protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         if (!(username.isEmpty() && password.isEmpty())) {
             userService.signUp(username, password);
-                resp.sendRedirect("/allusers");
+            req.getSession().setAttribute(req.getContextPath() + "isLoggedIn", true);
+            resp.sendRedirect(req.getContextPath() + "/allusers");
         }
     }
 }

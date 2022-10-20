@@ -34,9 +34,8 @@ public class UserRepository implements UserDao {
     public boolean isExist(final String username, final String password) {
         return listOfUser
                 .stream()
-                .anyMatch(user -> user.getUsername()
-                        .equals(username) && user.getPassword()
-                        .equals(password));
+                .anyMatch(user -> user.getUsername().equals(username)
+                        && user.getPassword().equals(password));
     }
 
     @Override
@@ -68,5 +67,4 @@ public class UserRepository implements UserDao {
                 .findFirst()
                 .orElse(new User());
     }
-
 }

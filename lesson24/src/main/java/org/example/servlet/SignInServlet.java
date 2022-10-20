@@ -23,19 +23,20 @@ public class SignInServlet extends HttpServlet {
     }
 
     @Override
+    @SuppressWarnings("PMD.UnusedAssignment")
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws IOException {
-        resp.sendRedirect("/view/sign_in.jsp");
+        resp.sendRedirect(req.getContextPath() + "/view/sign_in.jsp");
     }
 
     @Override
-    protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws IOException, ServletException {
+    protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
         if (userService.isExist(username, password)) {
-            req.getSession().setAttribute("isLoggedIn", true);
+            req.getSession().setAttribute(req.getContextPath() + "isLoggedIn", true);
         }
 
-        resp.sendRedirect("/allusers");
+        resp.sendRedirect(req.getContextPath() + "/allusers");
     }
 }

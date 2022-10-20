@@ -1,5 +1,7 @@
 package org.example.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
@@ -9,9 +11,10 @@ import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-
 @Entity
 @Table(name = "users")
+@Data
+@NoArgsConstructor
 public class User {
     @Id
     @Column(name = "id")
@@ -26,37 +29,5 @@ public class User {
     public User(final String username, final String password) {
         this.username = username;
         this.password = password;
-    }
-
-    public User() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(final int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(final String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(final String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return username;
     }
 }

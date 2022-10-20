@@ -15,4 +15,5 @@
     <suppress checks="LineLength" files="src/main/java/org/example/listener/DependencyInitializationContextListener.java" lines="14"/>
     <suppress checks="LineLength" files="src/main/java/org/example/utils/HibernateUtil.java" lines="26, 29, 32, 37, 39"/>
     <suppress checks="LineLength" files="src/main/java/org/example/filter/AuthenticationFilter.java" lines="25"/>
+    <suppress checks="NeedBraces" files="."/>
 </suppressions>
