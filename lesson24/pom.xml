@@ -111,11 +111,6 @@
                         <goals>
                             <goal>display-info</goal>
                         </goals>
-                        <configuration>
-                            <rules>
-                                <banDuplicatePomDependencyVersions/>
-                            </rules>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -124,7 +119,26 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.2</version>
             </plugin>
-
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <to>
+                        <image>registry.hub.docker.com/dmnvch98/lesson26</image>
+                    </to>
+                    <from>
+                        <image>tomcat:9.0.53-jdk17-temurin-focal</image>
+                    </from>
+                    <container>
+                        <!--
+                          For demonstration only: this directory in the base image contains a Tomcat default
+                          app (welcome page), so you may first want to delete this directory in the base image.
+                        -->
+                        <appRoot>/usr/local/tomcat/webapps/myapp.war</appRoot>
+                    </container>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
