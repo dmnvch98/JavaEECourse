@@ -192,7 +192,7 @@
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>true</failsOnError>
                             <suppressionsLocation>
-                                checkstyle/checkstyle-suppressions.xml
+                                codequality/checkstyle-suppressions.xml
                             </suppressionsLocation>
                             <suppressionsFileExpression>
                                 checkstyle.suppressions.file

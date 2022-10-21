@@ -8,12 +8,10 @@
     <suppress checks="Javadoc" files="."/>
     <suppress checks="DesignForExtension" files="."/>
     <suppress checks="HiddenField" files="."/>
-    <suppress checks="LineLength" files="."/>
     <suppress checks="LineLength" files="src/main/java/org/example/servlet/SignInServlet.java" lines="26, 31"/>
     <suppress checks="LineLength" files="src/main/java/org/example/servlet/SignUpServlet.java" lines="25, 30"/>
     <suppress checks="LineLength" files="src/main/java/org/example/servlet/AllUsersServlet.java" lines="23, 26, 30"/>
     <suppress checks="LineLength" files="src/main/java/org/example/listener/DependencyInitializationContextListener.java" lines="14"/>
     <suppress checks="LineLength" files="src/main/java/org/example/utils/HibernateUtil.java" lines="26, 29, 32, 37, 39"/>
     <suppress checks="LineLength" files="src/main/java/org/example/filter/AuthenticationFilter.java" lines="25"/>
-    <suppress checks="NeedBraces" files="."/>
 </suppressions>
