@@ -16,7 +16,7 @@ public class UserService {
         return userDao.isExist(username, password);
     }
 
-    public void signUp(final String username, final String password) {
+    public void save(final String username, final String password) {
         if (isExist(username, password)) {
             throw new RuntimeException("User already exists");
         }
@@ -34,5 +34,4 @@ public class UserService {
     public User getUser(final String username) {
         return userDao.getUser(username);
     }
-
 }

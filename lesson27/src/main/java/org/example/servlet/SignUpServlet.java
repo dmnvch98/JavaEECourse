@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
 @WebServlet(name = "signup", value = "/signup")
 public class SignUpServlet extends HttpServlet {
     private UserService userService;
@@ -32,8 +31,8 @@ public class SignUpServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         if (!(username.isEmpty() && password.isEmpty())) {
-            userService.signUp(username, password);
-            req.getSession().setAttribute(req.getContextPath() + "isLoggedIn", true);
+            userService.save(username, password);
+            req.getSession().setAttribute("isLoggedIn", true);
             resp.sendRedirect(req.getContextPath() + "/allusers");
         }
     }

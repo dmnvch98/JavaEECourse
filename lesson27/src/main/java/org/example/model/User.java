@@ -4,17 +4,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
 @Data
 @NoArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "filterUsers", query = "select u from User u where u.username like CONCAT(:prefix,'%')"),
+        @NamedQuery(name = "isExists", query = "select u from User u where u.username = :username " +
+                "and u.password = :password"),
+        @NamedQuery(name = "getUser", query = "select u from User u where u.username = :username")
+})
 public class User {
     @Id
     @Column(name = "id")

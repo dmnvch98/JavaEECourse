@@ -23,7 +23,6 @@ public class SignInServlet extends HttpServlet {
     }
 
     @Override
-    @SuppressWarnings("PMD.UnusedAssignment")
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws IOException {
         resp.sendRedirect(req.getContextPath() + "/view/sign_in.jsp");
     }
@@ -34,9 +33,10 @@ public class SignInServlet extends HttpServlet {
         String password = req.getParameter("password");
 
         if (userService.isExist(username, password)) {
-            req.getSession().setAttribute(req.getContextPath() + "isLoggedIn", true);
+            req.getSession().setAttribute("isLoggedIn", true);
+            resp.sendRedirect(req.getContextPath() + "/allusers");
+        } else {
+            resp.sendRedirect(req.getContextPath() + "/signup");
         }
-
-        resp.sendRedirect(req.getContextPath() + "/allusers");
     }
 }

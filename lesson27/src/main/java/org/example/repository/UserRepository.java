@@ -5,16 +5,15 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepository implements UserDao {
-    private final List<User> listOfUser;
     private final SessionFactory sessionFactory;
 
     public UserRepository(final SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-        listOfUser = getAll();
     }
 
     @Override
@@ -24,7 +23,6 @@ public class UserRepository implements UserDao {
             Transaction transaction = session.beginTransaction();
             session.save(user);
             transaction.commit();
-            listOfUser.add(user);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -32,10 +30,15 @@ public class UserRepository implements UserDao {
 
     @Override
     public boolean isExist(final String username, final String password) {
-        return listOfUser
-                .stream()
-                .anyMatch(user -> user.getUsername().equals(username)
-                        && user.getPassword().equals(password));
+        try (Session session = sessionFactory.openSession()) {
+            Query query = session.getNamedQuery("isExists")
+                    .setParameter("username", username)
+                    .setParameter("password", password);
+            return query.getSingleResult() != null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override
@@ -53,18 +56,28 @@ public class UserRepository implements UserDao {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<User> filterUsers(final String prefix) {
-        return listOfUser.stream()
-                .filter(u -> u.getUsername().startsWith(prefix)).toList();
+        List<User> filteredUsers = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()) {
+            Query query = session.getNamedQuery("filterUsers").setParameter("prefix", prefix);
+            filteredUsers = (List<User>) query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return filteredUsers;
     }
 
     @Override
     public User getUser(final String username) {
-        return listOfUser
-                .stream()
-                .filter(u -> u.getUsername()
-                        .equals(username))
-                .findFirst()
-                .orElse(new User());
+        User user = new User();
+        try (Session session = sessionFactory.openSession()) {
+            Query query = session.getNamedQuery("getUser")
+                    .setParameter("username", username);
+            user = (User) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 }
