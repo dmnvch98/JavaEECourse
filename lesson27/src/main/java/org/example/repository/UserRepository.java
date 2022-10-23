@@ -1,14 +1,17 @@
 package org.example.repository;
 
+import lombok.extern.log4j.Log4j2;
 import org.example.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log4j2
 public class UserRepository implements UserDao {
     private final SessionFactory sessionFactory;
 
@@ -36,7 +39,9 @@ public class UserRepository implements UserDao {
                     .setParameter("password", password);
             return query.getSingleResult() != null;
         } catch (Exception e) {
-            e.printStackTrace();
+            if (!(e instanceof NoResultException)) {
+                log.error(e);
+            }
         }
         return false;
     }
@@ -76,7 +81,9 @@ public class UserRepository implements UserDao {
                     .setParameter("username", username);
             user = (User) query.getSingleResult();
         } catch (Exception e) {
-            e.printStackTrace();
+            if (!(e instanceof NoResultException)) {
+                log.error(e);
+            }
         }
         return user;
     }

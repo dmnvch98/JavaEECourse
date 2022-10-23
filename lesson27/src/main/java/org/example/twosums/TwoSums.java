@@ -33,10 +33,3 @@ public class TwoSums {
   }
 
 }
-
-//class Main {
-//  public static void main(String[] args) {
-//    TwoSums twoSums = new TwoSums();
-//    System.out.println(Arrays.toString(twoSums.calculate(new int[]{0, 1, 3, 4, 5}, 5)));
-//  }
-//}

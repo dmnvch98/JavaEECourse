@@ -17,12 +17,11 @@ public class UserService {
         return userDao.isExist(username, password);
     }
 
-    public boolean save(final String username, final String password) throws IOException {
+    public void save(final String username, final String password) throws IOException {
         if (isExist(username, password)) {
             throw new IOException("User already exists");
         }
         userDao.save(username, password);
-        return true;
     }
 
     public List<User> getAllFilteredUsers(final String prefix) {
