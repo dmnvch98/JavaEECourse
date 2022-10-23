@@ -1,6 +1,6 @@
 package org.example.servlet;
 
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.example.service.UserService;
 
 import javax.servlet.ServletConfig;
@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "signIn", value = "/signin")
+@Log4j2
 public class SignInServlet extends HttpServlet {
     private UserService userService;
-    private Logger logger;
 
     @Override
     public void init(final ServletConfig config) throws ServletException {
@@ -22,7 +22,6 @@ public class SignInServlet extends HttpServlet {
         userService = (UserService) config
                 .getServletContext()
                 .getAttribute("userService");
-        logger = (Logger) config.getServletContext().getAttribute("logger");
     }
 
     @Override
@@ -34,13 +33,13 @@ public class SignInServlet extends HttpServlet {
     protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        logger.info("Attempt to login with username: " + username);
+        log.info("Attempt to login with username: " + username);
         if (userService.isExist(username, password)) {
-            logger.info("success");
+            log.info("success");
             req.getSession().setAttribute("isLoggedIn", true);
             resp.sendRedirect(req.getContextPath() + "/allusers");
         } else {
-            logger.info("failed");
+            log.info("failed");
             resp.sendRedirect(req.getContextPath() + "/signup");
         }
     }
