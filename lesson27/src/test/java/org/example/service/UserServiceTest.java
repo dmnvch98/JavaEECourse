@@ -3,16 +3,12 @@ package org.example.service;
 import org.example.model.User;
 import org.example.repository.UserDao;
 import org.example.repository.UserRepository;
-import org.example.utils.HibernateUtil;
-import org.hibernate.SessionFactory;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,8 +30,8 @@ public class UserServiceTest {
 
         given(repository.isExist(username, password)).willReturn(true);
 
-        final RuntimeException actual = assertThrows(
-                RuntimeException.class, () -> sut.save(username, password));
+        final IOException actual = assertThrows(
+                IOException.class, () -> sut.save(username, password));
 
         assertThat(actual)
                 .hasMessage("User already exists");

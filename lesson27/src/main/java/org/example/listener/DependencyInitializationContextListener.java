@@ -9,6 +9,8 @@ import org.example.service.UserService;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @WebListener
 public class DependencyInitializationContextListener implements ServletContextListener {
@@ -19,6 +21,8 @@ public class DependencyInitializationContextListener implements ServletContextLi
       UserDao repository = new UserRepository(sessionFactory);
       UserService userService = new UserService(repository);
       sce.getServletContext().setAttribute("userService", userService);
+      Logger logger = LogManager.getLogger();
+      sce.getServletContext().setAttribute("logger", logger);
     } catch (Exception e) {
       e.printStackTrace();
     }

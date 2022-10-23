@@ -3,6 +3,7 @@ package org.example.service;
 import org.example.model.User;
 import org.example.repository.UserDao;
 
+import java.io.IOException;
 import java.util.List;
 
 public class UserService {
@@ -16,11 +17,12 @@ public class UserService {
         return userDao.isExist(username, password);
     }
 
-    public void save(final String username, final String password) {
+    public boolean save(final String username, final String password) throws IOException {
         if (isExist(username, password)) {
-            throw new RuntimeException("User already exists");
+            throw new IOException("User already exists");
         }
         userDao.save(username, password);
+        return true;
     }
 
     public List<User> getAllFilteredUsers(final String prefix) {
