@@ -6,8 +6,7 @@
 name: pmd
 
 on:
-  pull_request:
-    branches: [ "master" ]
+  push:
 
 permissions:
   contents: read

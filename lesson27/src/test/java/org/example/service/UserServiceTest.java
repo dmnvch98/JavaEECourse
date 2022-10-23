@@ -3,8 +3,9 @@ package org.example.service;
 import org.example.model.User;
 import org.example.repository.UserDao;
 import org.example.repository.UserRepository;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -19,7 +20,8 @@ import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
-    private final UserDao repository = Mockito.mock(UserRepository.class);
+    @Mock
+    private UserDao repository;
 
     private final UserService sut = new UserService(repository);
 

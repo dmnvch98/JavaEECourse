@@ -1,7 +1,6 @@
 name: checkstyle
 on:
-  pull_request:
-    branches: [ "master" ]
+  push:
 jobs:
   checkstyle:
     name: runner / checkstyle
