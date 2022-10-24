@@ -19,7 +19,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: Build with Maven
-        run: mvn -B verify om.github.spotbugs:spotbugs-maven-plugin:3.1.7:spotbugs
+        run: mvn -B verify com.github.spotbugs:spotbugs-maven-plugin:4.7.1.1:spotbugs
       - uses: jwgmeligmeyling/spotbugs-github-action@master
         with:
           path: 'codequality/spotbugs.xml'
