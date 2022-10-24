@@ -18,15 +18,15 @@ public class AllUsersServlet extends HttpServlet {
     private UserService userService;
 
     @Override
-    public void init(ServletConfig config) throws ServletException {
+    public void init(final ServletConfig config) throws ServletException {
         super.init(config);
         userService = (UserService) config.getServletContext().getAttribute("userService");
     }
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
         List<User> users;
         users = userService.getAllFilteredUsers(req.getParameter("search"));
         req.setAttribute("users", users);
-        getServletContext().getRequestDispatcher("/view/all_users.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher(req.getContextPath() + "/view/all_users.jsp").forward(req, resp);
     }
 }

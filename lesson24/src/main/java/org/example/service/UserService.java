@@ -8,24 +8,31 @@ import java.util.List;
 public class UserService {
     private final UserDao userDao;
 
-    public UserService(UserDao userDao) {
+    public UserService(final UserDao userDao) {
         this.userDao = userDao;
     }
 
-    public boolean userIsExist(final String username, final String password) {
+    public boolean isExist(final String username, final String password) {
         return userDao.isExist(username, password);
     }
 
     public void signUp(final String username, final String password) {
+        if (isExist(username, password)) {
+            throw new RuntimeException("User already exists");
+        }
         userDao.save(username, password);
     }
 
-    public List<User> getAllFilteredUsers(String prefix) {
+    public List<User> getAllFilteredUsers(final String prefix) {
         if (prefix != null) {
             return userDao.filterUsers(prefix);
-        }
-        else {
+        } else {
             return userDao.getAll();
         }
     }
+
+    public User getUser(final String username) {
+        return userDao.getUser(username);
+    }
+
 }

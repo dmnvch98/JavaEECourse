@@ -9,4 +9,5 @@ public interface UserDao {
     List<User> getAll();
     List<User> filterUsers(String prefix);
     boolean isExist(String username, String password);
+    User getUser(String username);
 }
