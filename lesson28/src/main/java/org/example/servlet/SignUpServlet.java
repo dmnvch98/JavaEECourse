@@ -39,6 +39,7 @@ public class SignUpServlet extends HttpServlet {
             try {
                 userService.save(username, password, "USER", new Date());
                 req.getSession().setAttribute("isLoggedIn", true);
+                req.getSession().setAttribute("username", username);
                 resp.sendRedirect(req.getContextPath() + "/allusers");
             } catch (IOException e) {
                 log.error(e);

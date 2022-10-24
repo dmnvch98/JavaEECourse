@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static java.util.Objects.nonNull;
 
 @WebFilter(urlPatterns = "/allusers")
 public class AuthenticationFilter implements Filter {
@@ -24,7 +23,7 @@ public class AuthenticationFilter implements Filter {
         final HttpSession session = req.getSession();
 
         final Boolean isLoggedIn = (Boolean) session.getAttribute("isLoggedIn");
-        if (nonNull(isLoggedIn)) {
+        if (isLoggedIn) {
             chain.doFilter(request, response);
         } else {
             res.sendRedirect(req.getContextPath() + "/view/sign_in.jsp");

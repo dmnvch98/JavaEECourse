@@ -11,26 +11,35 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-
+<jsp:include page="header.jsp"></jsp:include>
 <div class="container-fluid d-flex align-items-center justify-content-center">
     <div class="row col-xl-7 col-lg-6 col-md-8 col-sm-9 col-12">
-    <table class="table-striped table-hover">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Username</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="user" items="${users}">
+        <table class="table-striped table-hover">
+            <thead>
             <tr>
-                <td><c:out value="${user.id}"/></td>
-                <td><c:out value="${user.username}"/></td>
+                <th>Id</th>
+                <th>Username</th>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+            <c:forEach var="user" items="${users}">
+                <tr>
+                    <td><c:out value="${user.id}"/></td>
+                    <td><c:out value="${user.username}"/></td>
+
+                    <c:set var="currentUsername" scope="session" value="${username}"/>
+                    <c:set var="displayedUsername" scope="session" value="${user.username}"/>
+                    <c:if test="${displayedUsername!= currentUsername}">
+                        <td>
+                            <a href="${pageContext.request.contextPath}/createfriendrequest?requestUsername=<c:out value="${currentUsername}"/>&approveUsername=<c:out value="${displayedUsername}"/>"
+                               >Add to friends</a>
+                        </td>
+                    </c:if>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>
