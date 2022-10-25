@@ -20,8 +20,10 @@ import javax.persistence.NamedQuery;
 @Data
 @NoArgsConstructor
 @NamedQueries({
-        @NamedQuery(name = "getIncomingFriendRequests", query = "select ifr from FriendRequest ifr " +
-                "where ifr.approveUser.username = :username")
+        @NamedQuery(name = "getIncomingFriendRequests", query = "select ifr from FriendRequest ifr "
+                + "where ifr.approveUser.username = :username"),
+        @NamedQuery(name = "getFriendRequestById", query = "select fr from FriendRequest fr "
+                + "where fr.id = :requestId")
 })
 public class FriendRequest {
     @Id

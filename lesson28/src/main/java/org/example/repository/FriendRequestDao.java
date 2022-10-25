@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface FriendRequestDao {
     void createRequest(User requestUser, User approveUser);
-    void deleteRequest(long requestId, long removerUserId);
+    void deleteRequest(FriendRequest friendRequest);
 
     List<FriendRequest> getIncomingFriendRequests(String username);
+    FriendRequest getFriendRequest(long id);
 }

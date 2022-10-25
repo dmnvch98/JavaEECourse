@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-public class FriendRepository implements FriendDto{
+public class FriendRepository implements FriendDto {
 
     private final SessionFactory sessionFactory;
 

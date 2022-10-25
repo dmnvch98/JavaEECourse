@@ -9,4 +9,5 @@
     <suppress checks="DesignForExtension" files="."/>
     <suppress checks="HiddenField" files="."/>
     <suppress checks="LineLength" files="."/>
+    <suppress checks="AvoidStarImport" files="."/>
 </suppressions>

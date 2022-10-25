@@ -17,16 +17,19 @@
         <table class="table-striped table-hover">
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Username</th>
             </tr>
             </thead>
             <tbody>
+            <c:set var="currentUsername" scope="session" value="${username}"/>
             <c:forEach var="incomingFriendRequest" items="${incomingFriendRequests}">
                 <tr>
-                    <td><c:out value="${incomingFriendRequest.requestUser.username}"/></td>
+                    <td>
+                        <c:set var="displayedUsername" scope="page" value="${incomingFriendRequest.requestUser.username}"/>
+                        <c:out value="${displayedUsername}"/>
+                    </td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/createfriendrequest?requestUsername=<c:out value="${currentUsername}"/>&approveUsername=<c:out value="${displayedUsername}"/>"
+                            <a href="${pageContext.request.contextPath}/addfriend?friendrequestid=<c:out value="${incomingFriendRequest.id}"/>"
                             >Add to friends</a>
                         </td>
                 </tr>

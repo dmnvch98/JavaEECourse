@@ -1,15 +1,18 @@
 package org.example.repository;
 
+import lombok.extern.log4j.Log4j2;
 import org.example.model.FriendRequest;
 import org.example.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log4j2
 public class FriendRequestRepository implements FriendRequestDao {
 
     private final SessionFactory sessionFactory;
@@ -29,6 +32,7 @@ public class FriendRequestRepository implements FriendRequestDao {
             e.printStackTrace();
         }
     }
+
     @SuppressWarnings("unchecked")
     public List<FriendRequest> getIncomingFriendRequests(final String username) {
         List<FriendRequest> incomingFriendRequests = new ArrayList<>();
@@ -44,7 +48,28 @@ public class FriendRequestRepository implements FriendRequestDao {
     }
 
     @Override
-    public void deleteRequest(final long requestId, final long removerUserId) {
+    public FriendRequest getFriendRequest(final long requestId) {
+        FriendRequest friendRequest = new FriendRequest();
+        try (Session session = sessionFactory.openSession()) {
+            Query query = session.getNamedQuery("getFriendRequestById")
+                    .setParameter("requestId", requestId);
+            friendRequest = (FriendRequest) query.getSingleResult();
+        } catch (Exception e) {
+            if (!(e instanceof NoResultException)) {
+                log.error(e);
+            }
+        }
+        return friendRequest;
+    }
 
+    @Override
+    public void deleteRequest(final FriendRequest friendRequest) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.remove(friendRequest);
+            transaction.commit();
+        } catch (Exception e) {
+            log.error(e);
+        }
     }
 }

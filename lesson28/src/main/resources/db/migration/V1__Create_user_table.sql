@@ -15,3 +15,5 @@ INSERT INTO users (created_at, password, role, username)
 VALUES ('2022-10-24 00:00:00.000000', 'password','USER', 'Masha');
 INSERT INTO users (created_at, password, role, username)
 VALUES ('2022-10-24 00:00:00.000000', 'password','USER', 'Glasha');
+INSERT INTO users (created_at, password, role, username)
+VALUES ('2022-10-24 00:00:00.000000', 'admin','USER', 'admin');

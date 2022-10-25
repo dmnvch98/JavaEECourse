@@ -18,7 +18,7 @@ public class GetIncomingFriendRequestsServlet extends HttpServlet {
 
     @Override
     public void init(final ServletConfig config) throws ServletException {
-        super.init();
+        super.init(config);
         friendRequestService = (FriendRequestService) config
                 .getServletContext()
                 .getAttribute("friendRequestService");

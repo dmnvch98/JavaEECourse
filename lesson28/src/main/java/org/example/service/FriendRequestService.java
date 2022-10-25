@@ -17,7 +17,15 @@ public class FriendRequestService {
         friendRequestDao.createRequest(requestUser, approveUser);
     }
 
+    public void deleteRequest(final FriendRequest friendRequest) {
+        friendRequestDao.deleteRequest(friendRequest);
+    }
+
     public List<FriendRequest> getIncomingFriendRequests(final String username) {
         return friendRequestDao.getIncomingFriendRequests(username);
+    }
+
+    public FriendRequest getFriendRequest(final long id) {
+        return friendRequestDao.getFriendRequest(id);
     }
 }
