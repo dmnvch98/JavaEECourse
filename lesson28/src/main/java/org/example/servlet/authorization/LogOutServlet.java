@@ -1,4 +1,4 @@
-package org.example.servlet;
+package org.example.servlet.authorization;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

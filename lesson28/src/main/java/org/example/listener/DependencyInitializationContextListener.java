@@ -1,10 +1,8 @@
 package org.example.listener;
 
-import org.example.repository.FriendRequestDao;
-import org.example.repository.FriendRequestRepository;
-import org.example.repository.UserDao;
-import org.example.repository.UserRepository;
+import org.example.repository.*;
 import org.example.service.FriendRequestService;
+import org.example.service.FriendService;
 import org.example.utils.HibernateUtil;
 import org.hibernate.SessionFactory;
 import org.example.service.UserService;
@@ -25,8 +23,12 @@ public class DependencyInitializationContextListener implements ServletContextLi
       FriendRequestDao friendRequestDao = new FriendRequestRepository(sessionFactory);
       FriendRequestService friendRequestService = new FriendRequestService(friendRequestDao);
 
+      FriendDto friendRepository = new FriendRepository(sessionFactory);
+      FriendService friendService = new FriendService(friendRepository);
+
       sce.getServletContext().setAttribute("userService", userService);
       sce.getServletContext().setAttribute("friendRequestService", friendRequestService);
+      sce.getServletContext().setAttribute("friendService", friendService);
     } catch (Exception e) {
       e.printStackTrace();
     }

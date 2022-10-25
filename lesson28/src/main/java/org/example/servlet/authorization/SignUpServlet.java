@@ -1,4 +1,4 @@
-package org.example.servlet;
+package org.example.servlet.authorization;
 
 import lombok.extern.log4j.Log4j2;
 import org.example.service.UserService;
@@ -10,10 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
-@WebServlet(name = "signIn", value = "/signin")
+@WebServlet(name = "signup", value = "/signup")
 @Log4j2
-public class SignInServlet extends HttpServlet {
+public class SignUpServlet extends HttpServlet {
     private UserService userService;
 
     @Override
@@ -26,21 +27,24 @@ public class SignInServlet extends HttpServlet {
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws IOException {
-        resp.sendRedirect(req.getContextPath() + "/view/sign_in.jsp");
+        resp.sendRedirect(req.getContextPath() + "/view/sign_up.jsp");
     }
 
     @Override
     protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        log.info("Attempt to login with username: " + username);
-        if (userService.isExist(username, password)) {
-            log.info("success");
-            req.getSession().setAttribute("isLoggedIn", true);
-            resp.sendRedirect(req.getContextPath() + "/allusers");
-        } else {
-            log.info("failed");
-            resp.sendRedirect(req.getContextPath() + "/signup");
+        log.info("Attempt to signup with username: " + username);
+        if (!(username.isEmpty() && password.isEmpty())) {
+            try {
+                userService.save(username, password, "USER", new Date());
+                req.getSession().setAttribute("isLoggedIn", true);
+                req.getSession().setAttribute("username", username);
+                resp.sendRedirect(req.getContextPath() + "/allusers");
+            } catch (IOException e) {
+                log.error(e);
+                resp.sendRedirect(req.getContextPath() + "/signup");
+            }
         }
     }
 }

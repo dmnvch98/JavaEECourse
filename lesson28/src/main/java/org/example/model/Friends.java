@@ -12,32 +12,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 
 @Entity
-@Table(name = "friendRequest")
+@Table(name = "friends")
 @Data
 @NoArgsConstructor
-@NamedQueries({
-        @NamedQuery(name = "getIncomingFriendRequests", query = "select ifr from FriendRequest ifr " +
-                "where ifr.approveUser.username = :username")
-})
-public class FriendRequest {
+public class Friends {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
     @ManyToOne
-    @JoinColumn(name = "requester_user_id")
-    private User requestUser;
+    @JoinColumn(name = "first_user")
+    private User firstUser;
     @ManyToOne
-    @JoinColumn(name = "approver_user_id")
-    private User approveUser;
+    @JoinColumn(name = "second_user")
+    private User secondUser;
 
-    public FriendRequest(final User requestUser, final User approveUser) {
-        this.requestUser = requestUser;
-        this.approveUser = approveUser;
+    public Friends(final User firstUser, final User secondUser) {
+        this.firstUser = firstUser;
+        this.secondUser = secondUser;
     }
 }

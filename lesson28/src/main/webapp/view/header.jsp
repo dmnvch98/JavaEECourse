@@ -34,7 +34,7 @@
                         Friends requests
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Incoming requests</a></li>
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/getincomingfriendrequests">Incoming requests</a></li>
                         <li><a class="dropdown-item" href="#">Outgoing requests</a></li>
                     </ul>
                 </li>
