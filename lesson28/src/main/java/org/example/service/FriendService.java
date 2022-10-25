@@ -16,7 +16,4 @@ public class FriendService {
         friendRepository.addFriend(firstUser, secondUser);
     }
 
-    public List<User> getUserFriends(long userId) {
-        return friendRepository.getUserFriends(userId);
-    }
 }

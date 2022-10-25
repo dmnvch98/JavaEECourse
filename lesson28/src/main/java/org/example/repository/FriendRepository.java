@@ -6,9 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class FriendRepository implements FriendDto {
 
     private final SessionFactory sessionFactory;
@@ -29,17 +26,4 @@ public class FriendRepository implements FriendDto {
         }
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<User> getUserFriends(long userId) {
-        List<User> userFriends = new ArrayList<>();
-//        try (Session session = sessionFactory.openSession()) {
-//            Transaction transaction = session.beginTransaction();
-//            userFriends = session.getNamedQuery("getUserFriends").setParameter("userId", userId).getResultList();
-//            transaction.commit();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        return userFriends;
-    }
 }

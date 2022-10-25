@@ -25,6 +25,10 @@ public class FriendRequestService {
         return friendRequestDao.getIncomingFriendRequests(username);
     }
 
+    public List<FriendRequest> getOutgoingFriendRequests(final String username) {
+        return friendRequestDao.getOutgoingFriendRequests(username);
+    }
+
     public FriendRequest getFriendRequest(final long id) {
         return friendRequestDao.getFriendRequest(id);
     }

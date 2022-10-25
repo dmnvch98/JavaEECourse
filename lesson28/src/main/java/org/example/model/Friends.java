@@ -10,12 +10,7 @@ import javax.persistence.*;
 @Table(name = "friends")
 @Data
 @NoArgsConstructor
-//@NamedQueries({
-//        @NamedQuery(name = "getUserFriends",query = "select u from User u " +
-//                "where u.id in (select f.secondUser from Friends f where f.firstUser = :userId)")
-        //select * from users where id in (select f.second_user from friends f where first_user = 5)
-                // query = "select f.secondUser from Friends f where f.firstUser = :userId
-//})
+
 public class Friends {
     @Id
     @Column(name = "id")

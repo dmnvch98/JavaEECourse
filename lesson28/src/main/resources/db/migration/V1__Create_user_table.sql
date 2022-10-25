@@ -7,6 +7,7 @@ create table users (
                        primary key (id)
 );
 
+
 INSERT INTO users (created_at, password, role, username)
 VALUES ('2022-10-24 00:00:00.000000', 'password','USER', 'Andrey');
 INSERT INTO users (created_at, password, role, username)

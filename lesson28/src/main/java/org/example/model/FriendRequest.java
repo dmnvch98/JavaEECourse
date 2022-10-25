@@ -22,6 +22,8 @@ import javax.persistence.NamedQuery;
 @NamedQueries({
         @NamedQuery(name = "getIncomingFriendRequests", query = "select ifr from FriendRequest ifr "
                 + "where ifr.approveUser.username = :username"),
+        @NamedQuery(name = "getOutgoingFriendRequest", query = "select ofr from FriendRequest ofr "
+                + "where ofr.requestUser.username = :username"),
         @NamedQuery(name = "getFriendRequestById", query = "select fr from FriendRequest fr "
                 + "where fr.id = :requestId")
 })

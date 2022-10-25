@@ -22,20 +22,16 @@
             </thead>
             <tbody>
             <c:set var="currentUsername" scope="session" value="${username}"/>
-            <c:forEach var="incomingFriendRequest" items="${incomingFriendRequests}">
+            <c:forEach var="outgoingFriendRequest" items="${outgoingFriendRequests}">
                 <tr>
                     <td>
                         <c:set var="displayedUsername" scope="page"
-                               value="${incomingFriendRequest.requestUser.username}"/>
+                               value="${outgoingFriendRequest.approveUser.username}"/>
                         <c:out value="${displayedUsername}"/>
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/addfriend?friendrequestid=<c:out value="${incomingFriendRequest.id}"/>"
-                        >Accept</a>
-                    </td>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/removefriendsrequest?friendrequestid=<c:out value="${incomingFriendRequest.id}"/>"
-                        >Decline</a>
+                        <a href="${pageContext.request.contextPath}/removefriendsrequest?friendrequestid=<c:out value="${outgoingFriendRequest.id}"/>"
+                        >Delete</a>
                     </td>
                 </tr>
             </c:forEach>

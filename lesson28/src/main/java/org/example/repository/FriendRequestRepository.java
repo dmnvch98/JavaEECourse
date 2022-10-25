@@ -33,6 +33,7 @@ public class FriendRequestRepository implements FriendRequestDao {
         }
     }
 
+    @Override
     @SuppressWarnings("unchecked")
     public List<FriendRequest> getIncomingFriendRequests(final String username) {
         List<FriendRequest> incomingFriendRequests = new ArrayList<>();
@@ -45,6 +46,21 @@ public class FriendRequestRepository implements FriendRequestDao {
             e.printStackTrace();
         }
         return incomingFriendRequests;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<FriendRequest> getOutgoingFriendRequests(String username) {
+        List<FriendRequest> outgoingFriendRequests = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Query query = session.getNamedQuery("getOutgoingFriendRequest").setParameter("username", username);
+            outgoingFriendRequests = (List<FriendRequest>) query.getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return outgoingFriendRequests;
     }
 
     @Override
