@@ -3,6 +3,8 @@ package org.example.service;
 import org.example.model.User;
 import org.example.repository.FriendDto;
 
+import java.util.List;
+
 public class FriendService {
     private final FriendDto friendRepository;
 
@@ -12,5 +14,9 @@ public class FriendService {
 
     public void addFriend(final User firstUser, final User secondUser) {
         friendRepository.addFriend(firstUser, secondUser);
+    }
+
+    public List<User> getUserFriends(long userId) {
+        return friendRepository.getUserFriends(userId);
     }
 }

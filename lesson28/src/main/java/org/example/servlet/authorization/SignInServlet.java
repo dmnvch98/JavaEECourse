@@ -38,6 +38,7 @@ public class SignInServlet extends HttpServlet {
             log.info("success");
             req.getSession().setAttribute("isLoggedIn", true);
             req.getSession().setAttribute("username", username);
+            req.getSession().setAttribute("username", username);
             resp.sendRedirect(req.getContextPath() + "/allusers");
         } else {
             log.info("failed");

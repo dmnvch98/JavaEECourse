@@ -37,4 +37,8 @@ public class UserService {
     public User getUser(final String username) {
         return userDao.getUser(username);
     }
+
+    public List<User> getUserFriends(long userId) {
+        return userDao.getUserFriends(userId);
+    }
 }

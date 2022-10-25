@@ -27,7 +27,7 @@
                     <a class="nav-link" href="#">All users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">My Friends</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/myfriends">My Friends</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

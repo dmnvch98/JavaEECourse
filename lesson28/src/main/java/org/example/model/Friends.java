@@ -4,19 +4,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.GenerationType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "friends")
 @Data
 @NoArgsConstructor
+//@NamedQueries({
+//        @NamedQuery(name = "getUserFriends",query = "select u from User u " +
+//                "where u.id in (select f.secondUser from Friends f where f.firstUser = :userId)")
+        //select * from users where id in (select f.second_user from friends f where first_user = 5)
+                // query = "select f.secondUser from Friends f where f.firstUser = :userId
+//})
 public class Friends {
     @Id
     @Column(name = "id")

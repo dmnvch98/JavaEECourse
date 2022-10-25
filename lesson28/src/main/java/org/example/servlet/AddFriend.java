@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 public class AddFriend extends HttpServlet {
 
     private FriendService friendService;
-//    private UserService userService;
 
     private FriendRequestService friendRequestService;
 
@@ -28,9 +27,6 @@ public class AddFriend extends HttpServlet {
         friendService = (FriendService) config
                 .getServletContext()
                 .getAttribute("friendService");
-//        userService = (UserService) config
-//                .getServletContext()
-//                .getAttribute("userService");
         friendRequestService = (FriendRequestService) config
                 .getServletContext()
                 .getAttribute("friendRequestService");
@@ -46,6 +42,7 @@ public class AddFriend extends HttpServlet {
         User firstUser = friendRequest.getApproveUser();
         User secondUser = friendRequest.getRequestUser();
         friendService.addFriend(firstUser, secondUser);
+        friendService.addFriend(secondUser, firstUser);
         friendRequestService.deleteRequest(friendRequest);
     }
 }
