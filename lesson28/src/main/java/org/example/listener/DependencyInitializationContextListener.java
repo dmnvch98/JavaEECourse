@@ -3,9 +3,9 @@ package org.example.listener;
 import org.example.repository.*;
 import org.example.service.FriendRequestService;
 import org.example.service.FriendService;
-import org.example.utils.HibernateUtil;
 import org.hibernate.SessionFactory;
 import org.example.service.UserService;
+import org.hibernate.cfg.Configuration;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -16,7 +16,9 @@ public class DependencyInitializationContextListener implements ServletContextLi
   @Override
   public void contextInitialized(final ServletContextEvent sce) {
     try {
-      SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+//      Configuration configuration = new Configuration();
+//      configuration.configure();
+      SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
       UserDao repository = new UserRepository(sessionFactory);
       UserService userService = new UserService(repository);
 

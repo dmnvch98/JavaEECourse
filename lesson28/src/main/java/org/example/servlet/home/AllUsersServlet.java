@@ -1,4 +1,4 @@
-package org.example.servlet;
+package org.example.servlet.home;
 
 import lombok.extern.log4j.Log4j2;
 import org.example.model.User;
@@ -13,28 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/myfriends")
+@WebServlet(name = "allUsers", value = "/allusers")
 @Log4j2
-public class MyFriendsServlet extends HttpServlet {
+public class AllUsersServlet extends HttpServlet {
 
     private UserService userService;
 
     @Override
     public void init(final ServletConfig config) throws ServletException {
         super.init(config);
-        userService = (UserService) config
-                .getServletContext()
-                .getAttribute("userService");
+        userService = (UserService) config.getServletContext().getAttribute("userService");
     }
-
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
-        String username = (String) req.getSession().getAttribute("username");
-        User user = userService.getUser(username);
-        List<User> userFriendsUsernames = userService.getUserFriends(user.getId());
-        log.info(username + " friends: " + userFriendsUsernames);
-        req.setAttribute("userFriends", userFriendsUsernames);
-        getServletContext().getRequestDispatcher("/view/my_friends.jsp").forward(req, resp);
+        String searchPrefix = req.getParameter("search");
+        log.info("Filter users with prefix " + searchPrefix);
+        List<User> users = userService.getAllFilteredUsers(searchPrefix);
+        req.setAttribute("users", users);
+        getServletContext().getRequestDispatcher("/view/all_users.jsp").forward(req, resp);
     }
-
 }

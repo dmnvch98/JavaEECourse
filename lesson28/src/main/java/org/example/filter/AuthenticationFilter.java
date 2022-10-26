@@ -12,11 +12,11 @@ import java.util.Set;
 @WebFilter(urlPatterns = "/allusers")
 public class AuthenticationFilter implements Filter {
 
-    private static Set<String> ALLOWED_PATHS;
+    private Set<String> allowedPaths;
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        ALLOWED_PATHS = Set.of("", "/signin", "/signup");
+    public void init(final FilterConfig filterConfig) throws ServletException {
+        allowedPaths = Set.of("", "/signin", "/signup");
     }
 
     @Override
@@ -26,12 +26,12 @@ public class AuthenticationFilter implements Filter {
         final HttpServletResponse res = (HttpServletResponse) response;
         final HttpSession session = req.getSession();
 
-        final boolean isLoggedIn = (session != null && session.getAttribute("isLoggedIn") != null);
+        final boolean isLoggedIn = session != null && session.getAttribute("isLoggedIn") != null;
         String path = req
                 .getRequestURI()
                 .substring(req.getContextPath().length())
                 .replaceAll("/+$", "");
-        boolean allowedPath = ALLOWED_PATHS.contains(path);
+        boolean allowedPath = allowedPaths.contains(path);
 
         if (isLoggedIn || allowedPath) {
             chain.doFilter(request, response);

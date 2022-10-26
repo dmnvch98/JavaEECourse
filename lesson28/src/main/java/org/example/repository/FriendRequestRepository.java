@@ -50,7 +50,7 @@ public class FriendRequestRepository implements FriendRequestDao {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<FriendRequest> getOutgoingFriendRequests(String username) {
+    public List<FriendRequest> getOutgoingFriendRequests(final String username) {
         List<FriendRequest> outgoingFriendRequests = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -81,7 +81,7 @@ public class FriendRequestRepository implements FriendRequestDao {
     }
 
     @Override
-    public boolean isExists(User requestUser, User approveUser) {
+    public boolean isExists(final User requestUser, final User approveUser) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             Query query = session.getNamedQuery("isFriendRequestExists")

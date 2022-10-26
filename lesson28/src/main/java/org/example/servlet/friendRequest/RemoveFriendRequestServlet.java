@@ -1,10 +1,8 @@
 package org.example.servlet.friendRequest;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
 import org.example.model.FriendRequest;
 import org.example.service.FriendRequestService;
-import org.example.service.UserService;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -18,7 +16,6 @@ import java.io.IOException;
 @Log4j2
 public class RemoveFriendRequestServlet extends HttpServlet {
     private FriendRequestService friendRequestService;
-    private UserService userService;
 
     @Override
     public void init(final ServletConfig config) throws ServletException {
@@ -26,13 +23,10 @@ public class RemoveFriendRequestServlet extends HttpServlet {
         friendRequestService = (FriendRequestService) config
                 .getServletContext()
                 .getAttribute("friendRequestService");
-        userService = (UserService) config
-                .getServletContext()
-                .getAttribute("userService");
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
         int friendRequestId = Integer.parseInt(req.getParameter("friendrequestid"));
         FriendRequest friendRequest = friendRequestService.getFriendRequest(friendRequestId);
 
@@ -42,5 +36,4 @@ public class RemoveFriendRequestServlet extends HttpServlet {
 
         resp.sendRedirect(req.getContextPath() + "/allusers");
     }
-
 }

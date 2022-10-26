@@ -38,7 +38,7 @@ public class UserService {
         return userDao.getUser(username);
     }
 
-    public List<User> getUserFriends(long userId) {
+    public List<User> getUserFriends(final long userId) {
         return userDao.getUserFriends(userId);
     }
 }

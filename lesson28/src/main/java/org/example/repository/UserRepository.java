@@ -96,7 +96,7 @@ public class UserRepository implements UserDao {
     }
 
     @SuppressWarnings("unchecked")
-    public List<User> getUserFriends(long userId) {
+    public List<User> getUserFriends(final long userId) {
         List<User> userFriends = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
