@@ -36,5 +36,4 @@ public class MyFriendsServlet extends HttpServlet {
         req.setAttribute("userFriends", userFriendsUsernames);
         getServletContext().getRequestDispatcher("/view/my_friends.jsp").forward(req, resp);
     }
-
 }

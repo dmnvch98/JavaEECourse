@@ -20,10 +20,11 @@ public class UserService {
 
     public void save(final String username, final String password,
                      final String role, final Date createdAt) throws IOException {
-//        if (isExist(username, password)) {
-//            throw new IOException("User already exists");
-//        }
-        userDao.save(username, password, role, createdAt);
+        if (isExist(username, password)) {
+            throw new IOException("User already exists");
+        } else {
+            userDao.save(username, password, role, createdAt);
+        }
     }
 
     public List<User> getAllFilteredUsers(final String prefix) {
