@@ -2,7 +2,6 @@ package org.example.servlet;
 
 import lombok.extern.log4j.Log4j2;
 import org.example.model.User;
-import org.example.service.FriendService;
 import org.example.service.UserService;
 
 import javax.servlet.ServletConfig;
@@ -18,15 +17,11 @@ import java.util.List;
 @Log4j2
 public class MyFriendsServlet extends HttpServlet {
 
-  //  private FriendService friendService;
     private UserService userService;
 
     @Override
     public void init(final ServletConfig config) throws ServletException {
         super.init(config);
-//        friendService = (FriendService) config
-//                .getServletContext()
-//                .getAttribute("friendService");
         userService = (UserService) config
                 .getServletContext()
                 .getAttribute("userService");

@@ -35,9 +35,11 @@ public class UserRepository implements UserDao {
     @Override
     public boolean isExist(final String username, final String password) {
         try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
             Query query = session.getNamedQuery("isExists")
                     .setParameter("username", username)
                     .setParameter("password", password);
+            transaction.commit();
             return query.getSingleResult() != null;
         } catch (Exception e) {
             if (!(e instanceof NoResultException)) {
@@ -66,8 +68,10 @@ public class UserRepository implements UserDao {
     public List<User> filterUsers(final String prefix) {
         List<User> filteredUsers = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
             Query query = session.getNamedQuery("filterUsers").setParameter("prefix", prefix);
             filteredUsers = (List<User>) query.getResultList();
+            transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,9 +82,11 @@ public class UserRepository implements UserDao {
     public User getUser(final String username) {
         User user = new User();
         try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
             Query query = session.getNamedQuery("getUser")
                     .setParameter("username", username);
             user = (User) query.getSingleResult();
+            transaction.commit();
         } catch (Exception e) {
             if (!(e instanceof NoResultException)) {
                 log.error(e);

@@ -25,5 +25,4 @@ public class FriendRepository implements FriendDto {
             e.printStackTrace();
         }
     }
-
 }

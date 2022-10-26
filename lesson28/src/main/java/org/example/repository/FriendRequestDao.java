@@ -11,4 +11,5 @@ public interface FriendRequestDao {
     List<FriendRequest> getIncomingFriendRequests(String username);
     List<FriendRequest> getOutgoingFriendRequests(String username);
     FriendRequest getFriendRequest(long id);
+    boolean isExists(User requestUser, User approveUser);
 }

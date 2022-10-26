@@ -10,7 +10,7 @@ import java.io.IOException;
 public class LogOutServlet extends HttpServlet {
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws IOException {
-        req.getSession().setAttribute("isLoggedIn", false);
+        req.getSession().setAttribute("isLoggedIn", null);
         resp.sendRedirect(req.getContextPath() + "/signin");
     }
 }

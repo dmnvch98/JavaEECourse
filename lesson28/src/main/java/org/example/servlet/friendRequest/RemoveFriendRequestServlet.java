@@ -40,7 +40,7 @@ public class RemoveFriendRequestServlet extends HttpServlet {
 
         friendRequestService.deleteRequest(friendRequest);
 
-        resp.sendRedirect(req.getContextPath() + "/getincomingfriendrequests");
+        resp.sendRedirect(req.getContextPath() + "/allusers");
     }
 
 }

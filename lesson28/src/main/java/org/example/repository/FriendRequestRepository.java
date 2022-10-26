@@ -67,15 +67,34 @@ public class FriendRequestRepository implements FriendRequestDao {
     public FriendRequest getFriendRequest(final long requestId) {
         FriendRequest friendRequest = new FriendRequest();
         try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
             Query query = session.getNamedQuery("getFriendRequestById")
                     .setParameter("requestId", requestId);
             friendRequest = (FriendRequest) query.getSingleResult();
+            transaction.commit();
         } catch (Exception e) {
             if (!(e instanceof NoResultException)) {
                 log.error(e);
             }
         }
         return friendRequest;
+    }
+
+    @Override
+    public boolean isExists(User requestUser, User approveUser) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = session.beginTransaction();
+            Query query = session.getNamedQuery("isFriendRequestExists")
+                    .setParameter("approveUser", approveUser)
+                    .setParameter("requestUser", requestUser);
+            transaction.commit();
+            return query.getSingleResult() != null;
+        } catch (Exception e) {
+            if (!(e instanceof NoResultException)) {
+                log.error(e);
+            }
+        }
+        return false;
     }
 
     @Override

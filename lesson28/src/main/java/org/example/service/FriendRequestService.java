@@ -14,7 +14,9 @@ public class FriendRequestService {
     }
 
     public void createRequest(final User requestUser, final User approveUser) {
-        friendRequestDao.createRequest(requestUser, approveUser);
+        if (!(friendRequestDao.isExists(requestUser, approveUser))) {
+            friendRequestDao.createRequest(requestUser, approveUser);
+        }
     }
 
     public void deleteRequest(final FriendRequest friendRequest) {
