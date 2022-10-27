@@ -1,7 +1,6 @@
 package org.example.repository;
 
 import lombok.extern.log4j.Log4j2;
-import org.example.model.FriendRequest;
 import org.example.model.Friends;
 import org.example.model.User;
 import org.hibernate.Session;
@@ -34,7 +33,7 @@ public class FriendRepository implements FriendDto {
     }
 
     @Override
-    public void removeFriend(Friends friends) {
+    public void removeFriend(final Friends friends) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             session.remove(friends);
@@ -46,7 +45,7 @@ public class FriendRepository implements FriendDto {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Friends> getFriendsRecords(User firstUser, User secondUser) {
+    public List<Friends> getFriendsRecords(final User firstUser, final User secondUser) {
         List<Friends> friendsRecords = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();

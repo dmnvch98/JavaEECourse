@@ -31,7 +31,7 @@ public class RemoveFriendServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
         User userFriend = userService.getUser(req.getParameter("user_friend"));
         User currentUser = userService.getUser((String) req.getSession().getAttribute("username"));
         List<Friends> friendsRecords = friendService.getFriendsRecords(currentUser, userFriend);

@@ -15,12 +15,12 @@ import java.util.List;
 public class MessageRepository implements MessageDao {
     private final SessionFactory sessionFactory;
 
-    public MessageRepository(SessionFactory sessionFactory) {
+    public MessageRepository(final SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public void saveMessage(Message message) {
+    public void saveMessage(final Message message) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             session.save(message);
@@ -32,7 +32,7 @@ public class MessageRepository implements MessageDao {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Message> getUserDialog(User user1, User user2) {
+    public List<Message> getUserDialog(final User user1, final User user2) {
         List<Message> userDialog = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -48,7 +48,7 @@ public class MessageRepository implements MessageDao {
     }
 
     @Override
-    public void removeDialog(List<Message> dialog) {
+    public void removeDialog(final List<Message> dialog) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             session.createQuery("delete Message m where m in (:dialog)").setParameter("dialog", dialog).executeUpdate();

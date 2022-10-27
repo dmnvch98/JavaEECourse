@@ -33,7 +33,7 @@ public class Message {
     @Column(name = "message_text")
     private String messageText;
 
-    public Message(User sender, User recipient, Date messageDate, String messageText) {
+    public Message(final User sender, final User recipient, final Date messageDate, final String messageText) {
         this.sender = sender;
         this.recipient = recipient;
         this.messageDate = messageDate;

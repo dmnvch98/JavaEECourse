@@ -30,7 +30,7 @@ public class SendMessageServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
         String recipientUsername = req.getParameter("recipient_user");
         req.getSession().setAttribute("recipient_message_user", recipientUsername);
         User sender = userService.getUser((String) req.getSession().getAttribute("username"));
@@ -41,7 +41,7 @@ public class SendMessageServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws IOException {
         User senderUser = userService.getUser((String) req.getSession().getAttribute("username"));
         log.info("Sender: " + senderUser.getUsername());
         String recipientUsername = (String) req.getSession().getAttribute("recipient_message_user");
