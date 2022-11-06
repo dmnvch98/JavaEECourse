@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Log4j2
-@WebServlet("/createfriendrequest")
+@WebServlet("/friendrequest")
 public class CreateFriendRequestServlet extends HttpServlet {
     private FriendRequestService friendRequestService;
     private UserService userService;
@@ -31,15 +31,14 @@ public class CreateFriendRequestServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws IOException {
+    protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws IOException {
         String requestUsername = req.getParameter("requestUsername");
         String approveUsername = req.getParameter("approveUsername");
         User requestUser = userService.getUser(requestUsername);
         User approveUser = userService.getUser(approveUsername);
 
-        log.info(requestUsername + " wants to add " + approveUsername + " to friends");
+        log.info("Create friend request. Initiator=[{}], Target=[{}]", requestUser, approveUser);
         friendRequestService.createRequest(requestUser, approveUser);
         resp.sendRedirect(req.getContextPath() + "/allusers");
     }
-
 }

@@ -1,8 +1,7 @@
-package org.example.servlet.friends;
+package org.example.servlet.friendRequest.friends;
 
 import lombok.extern.log4j.Log4j2;
-import org.example.model.FriendRequest;
-import org.example.model.User;
+import org.example.facades.AddFriendFacade;
 import org.example.service.FriendRequestService;
 import org.example.service.FriendService;
 
@@ -14,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/addfriend")
+@WebServlet("/friend")
 @Log4j2
 public class AddFriend extends HttpServlet {
 
@@ -34,18 +33,8 @@ public class AddFriend extends HttpServlet {
     }
 
     @Override
-    protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws IOException {
-        int friendRequestId = Integer.parseInt(req.getParameter("friendrequestid"));
-        FriendRequest friendRequest = friendRequestService.getFriendRequest(friendRequestId);
-
-        log.info(friendRequest.getApproveUser() + " adds " + friendRequest.getRequestUser() + " to friends");
-
-        User firstUser = friendRequest.getApproveUser();
-        User secondUser = friendRequest.getRequestUser();
-        friendService.addFriend(firstUser, secondUser);
-        friendService.addFriend(secondUser, firstUser);
-        friendRequestService.deleteRequest(friendRequest);
-
-        resp.sendRedirect(req.getContextPath() + "/getincomingfriendrequests");
+    protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws IOException {
+        new AddFriendFacade(friendService, friendRequestService).addFriend(req);
+        resp.sendRedirect(req.getContextPath() + "/incomingfriendrequests");
     }
 }

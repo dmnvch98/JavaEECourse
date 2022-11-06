@@ -32,7 +32,7 @@ public class MessageRepository implements MessageDao {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Message> getUserDialog(final User user1, final User user2) {
+    public List<Message> getUserMessages(final User user1, final User user2) {
         List<Message> userDialog = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -48,7 +48,7 @@ public class MessageRepository implements MessageDao {
     }
 
     @Override
-    public void removeDialog(final List<Message> dialog) {
+    public void removeMessages(final List<Message> dialog) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             session.createQuery("delete Message m where m in (:dialog)").setParameter("dialog", dialog).executeUpdate();

@@ -1,7 +1,7 @@
 name: spotbugs
 
 on:
-  pull_request:
+  pull_request
 
 jobs:
   build:

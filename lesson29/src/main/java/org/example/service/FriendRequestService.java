@@ -1,17 +1,15 @@
 package org.example.service;
 
+import lombok.RequiredArgsConstructor;
 import org.example.model.FriendRequest;
 import org.example.model.User;
 import org.example.repository.FriendRequestDao;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 public class FriendRequestService {
     private final FriendRequestDao friendRequestDao;
-
-    public FriendRequestService(final FriendRequestDao friendRequestDao) {
-        this.friendRequestDao = friendRequestDao;
-    }
 
     public void createRequest(final User requestUser, final User approveUser) {
         if (!(friendRequestDao.isExists(requestUser, approveUser))) {

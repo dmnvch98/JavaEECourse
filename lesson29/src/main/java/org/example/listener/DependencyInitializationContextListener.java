@@ -16,28 +16,24 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class DependencyInitializationContextListener implements ServletContextListener {
-  @Override
-  public void contextInitialized(final ServletContextEvent sce) {
-    try {
-      SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-      UserDao repository = new UserRepository(sessionFactory);
-      UserService userService = new UserService(repository);
+    @Override
+    public void contextInitialized(final ServletContextEvent sce) {
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        UserDao repository = new UserRepository(sessionFactory);
+        UserService userService = new UserService(repository);
 
-      FriendRequestDao friendRequestDao = new FriendRequestRepository(sessionFactory);
-      FriendRequestService friendRequestService = new FriendRequestService(friendRequestDao);
+        FriendRequestDao friendRequestDao = new FriendRequestRepository(sessionFactory);
+        FriendRequestService friendRequestService = new FriendRequestService(friendRequestDao);
 
-      MessageDao messageDto = new MessageRepository(sessionFactory);
-      MessageService messageService = new MessageService(messageDto);
+        MessageDao messageDto = new MessageRepository(sessionFactory);
+        MessageService messageService = new MessageService(messageDto);
 
-      FriendDto friendRepository = new FriendRepository(sessionFactory);
-      FriendService friendService = new FriendService(friendRepository, messageDto);
+        FriendDao friendRepository = new FriendRepository(sessionFactory);
+        FriendService friendService = new FriendService(friendRepository, messageDto);
 
-      sce.getServletContext().setAttribute("userService", userService);
-      sce.getServletContext().setAttribute("friendRequestService", friendRequestService);
-      sce.getServletContext().setAttribute("friendService", friendService);
-      sce.getServletContext().setAttribute("messageService", messageService);
-    } catch (Exception e) {
-      e.printStackTrace();
+        sce.getServletContext().setAttribute("userService", userService);
+        sce.getServletContext().setAttribute("friendRequestService", friendRequestService);
+        sce.getServletContext().setAttribute("friendService", friendService);
+        sce.getServletContext().setAttribute("messageService", messageService);
     }
-  }
 }

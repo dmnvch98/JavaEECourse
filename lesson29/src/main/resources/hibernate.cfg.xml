@@ -10,7 +10,7 @@
         <property name="hibernate.connection.user">root</property>
         <property name="hibernate.connection.password">root</property>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.show_sql">false</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <mapping class="org.example.model.Friends"/>
         <mapping class="org.example.model.User"/>

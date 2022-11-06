@@ -1,4 +1,4 @@
-package org.example.servlet.friends;
+package org.example.servlet.friendRequest.friends;
 
 import org.example.model.Friends;
 import org.example.model.User;

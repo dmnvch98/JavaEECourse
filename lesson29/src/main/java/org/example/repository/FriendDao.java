@@ -5,10 +5,10 @@ import org.example.model.User;
 
 import java.util.List;
 
-public interface FriendDto {
+public interface FriendDao {
     void addFriend(User firstUser, User secondUser);
 
     void removeFriend(Friends friends);
 
-    List<Friends> getFriendsRecords(User firstUser, User secondUser);
+    List<Friends> getFriends(User firstUser, User secondUser);
 }

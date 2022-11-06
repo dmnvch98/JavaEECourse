@@ -14,6 +14,9 @@ import java.io.IOException;
 
 @WebServlet("/removefriendsrequest")
 @Log4j2
+//Т.к. я не могу сделить один сервлет на создание и удаление Запроса в друзья из за отсутсвия метода delete
+// в формах html, я решил сделать два сервлета на создание и удаление запроса.
+// Оставил глагол Remove в пути для большей ясности
 public class RemoveFriendRequestServlet extends HttpServlet {
     private FriendRequestService friendRequestService;
 
@@ -30,8 +33,8 @@ public class RemoveFriendRequestServlet extends HttpServlet {
         int friendRequestId = Integer.parseInt(req.getParameter("friendrequestid"));
         FriendRequest friendRequest = friendRequestService.getFriendRequest(friendRequestId);
 
-        log.info(friendRequest.getApproveUser() + " declined " + friendRequest.getRequestUser() + "'s friend request");
-
+        log.info("Remove friends request. Initiator=[{}], Target=[{}]",
+                friendRequest.getRequestUser(), friendRequest.getApproveUser());
         friendRequestService.deleteRequest(friendRequest);
 
         resp.sendRedirect(req.getContextPath() + "/allusers");

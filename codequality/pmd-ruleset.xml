@@ -17,7 +17,6 @@
     <rule ref="category/java/bestpractices.xml/UnusedAssignment">
         <properties>
             <property name="checkUnusedPrefixIncrement" value="false"/>
-            <property name="reportUnusedVariables" value="false"/>
         </properties>
     </rule>
     <rule ref="category/java/bestpractices.xml/UseTryWithResources"/>

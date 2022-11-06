@@ -1,5 +1,6 @@
 package org.example.service;
 
+import lombok.RequiredArgsConstructor;
 import org.example.model.User;
 import org.example.repository.UserDao;
 
@@ -7,12 +8,9 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+@RequiredArgsConstructor
 public class UserService {
     private final UserDao userDao;
-
-    public UserService(final UserDao userDao) {
-        this.userDao = userDao;
-    }
 
     public boolean isExist(final String username, final String password) {
         return userDao.isExist(username, password);

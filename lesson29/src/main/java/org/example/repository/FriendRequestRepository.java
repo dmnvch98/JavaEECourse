@@ -1,5 +1,6 @@
 package org.example.repository;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.example.model.FriendRequest;
 import org.example.model.User;
@@ -13,13 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
+@RequiredArgsConstructor
 public class FriendRequestRepository implements FriendRequestDao {
 
     private final SessionFactory sessionFactory;
-
-    public FriendRequestRepository(final SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
 
     @Override
     public void createRequest(final User requestUser, final User approveUser) {
@@ -29,7 +27,7 @@ public class FriendRequestRepository implements FriendRequestDao {
             session.save(friendRequest);
             transaction.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
         }
     }
 
@@ -43,7 +41,7 @@ public class FriendRequestRepository implements FriendRequestDao {
             incomingFriendRequests = (List<FriendRequest>) query.getResultList();
             transaction.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
         }
         return incomingFriendRequests;
     }
@@ -58,7 +56,7 @@ public class FriendRequestRepository implements FriendRequestDao {
             outgoingFriendRequests = (List<FriendRequest>) query.getResultList();
             transaction.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
         }
         return outgoingFriendRequests;
     }

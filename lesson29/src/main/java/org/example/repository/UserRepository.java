@@ -1,5 +1,6 @@
 package org.example.repository;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.example.model.User;
 import org.hibernate.Session;
@@ -13,12 +14,9 @@ import java.util.Date;
 import java.util.List;
 
 @Log4j2
+@RequiredArgsConstructor
 public class UserRepository implements UserDao {
     private final SessionFactory sessionFactory;
-
-    public UserRepository(final SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
 
     @Override
     public void save(final String username, final String password, final String role, final Date createdAt) {
@@ -28,7 +26,7 @@ public class UserRepository implements UserDao {
             session.save(user);
             transaction.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
         }
     }
 
@@ -73,7 +71,7 @@ public class UserRepository implements UserDao {
             filteredUsers = (List<User>) query.getResultList();
             transaction.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
         }
         return filteredUsers;
     }
@@ -103,7 +101,7 @@ public class UserRepository implements UserDao {
             userFriends = session.getNamedQuery("getUserFriends").setParameter("userId", userId).getResultList();
             transaction.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
         }
         return userFriends;
     }

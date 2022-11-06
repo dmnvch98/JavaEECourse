@@ -30,7 +30,7 @@
                         <a href="${pageContext.request.contextPath}/removefriend?user_friend=<c:out value="${userFriend.username}"/>">Remove</a>
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/sendmessage?recipient_user=<c:out value="${userFriend.username}"/>">Send message</a>
+                        <a href="${pageContext.request.contextPath}/message?recipient_user=<c:out value="${userFriend.username}"/>">Send message</a>
                     </td>
                 </tr>
             </c:forEach>

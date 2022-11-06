@@ -29,12 +29,16 @@
 
                     <c:set var="currentUsername" scope="session" value="${username}"/>
                     <c:set var="displayedUsername" scope="session" value="${user.username}"/>
-                    <c:if test="${displayedUsername!= currentUsername}">
-                        <td>
-                            <a href="${pageContext.request.contextPath}/createfriendrequest?requestUsername=<c:out value="${currentUsername}"/>&approveUsername=<c:out value="${displayedUsername}"/>"
-                               >Add to friends</a>
-                        </td>
-                    </c:if>
+                    <td>
+                        <c:if test="${displayedUsername!= currentUsername}">
+                            <div style="width: 70px">
+                                <form method="post"
+                                      action="${pageContext.request.contextPath}/friendrequest?requestUsername=<c:out value="${currentUsername}"/>&approveUsername=<c:out value="${displayedUsername}"/>">
+                                    <input type="submit" value="Add to friends">
+                                </form>
+                            </div>
+                        </c:if>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

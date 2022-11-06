@@ -1,5 +1,7 @@
 package org.example.filter;
 
+import lombok.extern.log4j.Log4j2;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -9,39 +11,34 @@ import java.io.IOException;
 import java.util.Set;
 
 
-@WebFilter(urlPatterns = "/allusers")
+@WebFilter(urlPatterns = "/*")
+@Log4j2
 public class AuthenticationFilter implements Filter {
 
     private Set<String> allowedPaths;
 
     @Override
     public void init(final FilterConfig filterConfig) throws ServletException {
-        allowedPaths = Set.of("", "/signin", "/signup");
+        allowedPaths = Set.of("/signin", "/signup", "/sign_in.jsp", "/sign_up.jsp");
     }
 
     @Override
     public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain)
             throws IOException, ServletException {
         final HttpServletRequest req = (HttpServletRequest) request;
-        final HttpServletResponse res = (HttpServletResponse) response;
         final HttpSession session = req.getSession();
 
         final boolean isLoggedIn = session != null && session.getAttribute("isLoggedIn") != null;
-        String path = req
-                .getRequestURI()
-                .substring(req.getContextPath().length())
-                .replaceAll("/+$", "");
-        boolean allowedPath = allowedPaths.contains(path);
+        log.info("Trying to access to " + req.getRequestURI());
+        boolean allowedPath = allowedPaths.stream()
+                .anyMatch(path -> req.getRequestURI()
+                        .endsWith(path));
 
-        if (isLoggedIn || allowedPath) {
-            chain.doFilter(request, response);
-        } else {
-            res.sendRedirect(req.getContextPath() + "/view/sign_in.jsp");
+        if (!isLoggedIn && !allowedPath) {
+            request.getRequestDispatcher( "/view/sign_in.jsp").forward(request, response);
+            return;
         }
+        chain.doFilter(request, response);
     }
 
-    @Override
-    public void destroy() {
-        Filter.super.destroy();
-    }
 }

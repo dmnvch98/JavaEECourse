@@ -23,7 +23,7 @@
         </div>
     </c:forEach>
     <div class="input-group mb-3 position-absolute bottom-0 start-0">
-        <form style="display: inline-flex" action="${pageContext.request.contextPath}/sendmessage" method="post">
+        <form style="display: inline-flex" action="${pageContext.request.contextPath}/message" method="post">
             <input type="text" class="form-control" placeholder="message"
                    aria-describedby="button-addon2" style="width: 500px" name="message_text">
             <input class="btn btn-outline-secondary" type="submit" id="button-addon2" value="Send"/>

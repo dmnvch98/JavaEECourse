@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/getincomingfriendrequests")
+@WebServlet("/incomingfriendrequests")
 public class GetIncomingFriendRequestsServlet extends HttpServlet {
     private FriendRequestService friendRequestService;
 
@@ -31,11 +31,5 @@ public class GetIncomingFriendRequestsServlet extends HttpServlet {
         req.setAttribute("incomingFriendRequests", incomingFriendRequests);
         getServletContext().getRequestDispatcher("/view/incoming_friend_requests.jsp").forward(req, resp);
     }
-
-    @Override
-    protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
-    }
-
 
 }

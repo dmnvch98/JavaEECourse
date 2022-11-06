@@ -1,6 +1,6 @@
 name: checkstyle
 on:
-  pull_request:
+  pull_request
 jobs:
   checkstyle:
     name: runner / checkstyle
