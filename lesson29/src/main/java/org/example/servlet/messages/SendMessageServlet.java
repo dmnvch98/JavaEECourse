@@ -21,7 +21,6 @@ public class SendMessageServlet extends HttpServlet {
     private UserService userService;
     private MessageService messageService;
     private MessageFacade messageFacade;
-
     @Override
     public void init(final ServletConfig config) throws ServletException {
         super.init(config);
@@ -33,12 +32,14 @@ public class SendMessageServlet extends HttpServlet {
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
         messageFacade = new MessageFacade(userService, messageService);
         messageFacade.getMessages(req);
+
         getServletContext().getRequestDispatcher("/view/send_message.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws IOException {
         messageFacade.sendMessage(req);
+
         resp.sendRedirect(req.getContextPath() + "/message?recipient_user="
                 + req.getSession().getAttribute("recipient_message_user"));
     }
