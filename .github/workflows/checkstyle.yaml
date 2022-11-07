@@ -9,5 +9,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: dbelyaev/action-checkstyle@v0.5.1
         with:
-          reporter: github-pr-review
-          level: warning
+          level: error
