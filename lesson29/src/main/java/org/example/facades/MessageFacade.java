@@ -1,7 +1,6 @@
 package org.example.facades;
 
 import lombok.extern.log4j.Log4j2;
-
 import org.example.model.Message;
 import org.example.model.User;
 
