@@ -5,7 +5,6 @@ import lombok.extern.log4j.Log4j2;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Set;
@@ -35,7 +34,7 @@ public class AuthenticationFilter implements Filter {
                         .endsWith(path));
 
         if (!isLoggedIn && !allowedPath) {
-            request.getRequestDispatcher( "/view/sign_in.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/sign_in.jsp").forward(request, response);
             return;
         }
         chain.doFilter(request, response);

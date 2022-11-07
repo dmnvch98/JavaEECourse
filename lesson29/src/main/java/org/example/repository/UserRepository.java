@@ -12,6 +12,7 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -31,12 +32,11 @@ public class UserRepository implements UserDao {
     }
 
     @Override
-    public boolean isExist(final String username, final String password) {
+    public boolean isExist(final String username) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             Query query = session.getNamedQuery("isExists")
-                    .setParameter("username", username)
-                    .setParameter("password", password);
+                    .setParameter("username", username);
             transaction.commit();
             return query.getSingleResult() != null;
         } catch (Exception e) {
@@ -56,7 +56,7 @@ public class UserRepository implements UserDao {
             listOfUser = session.createQuery("from User").getResultList();
             transaction.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
         }
         return listOfUser;
     }
@@ -77,8 +77,8 @@ public class UserRepository implements UserDao {
     }
 
     @Override
-    public User getUser(final String username) {
-        User user = new User();
+    public Optional<User> getUserIfExists(final String username) {
+        User user = null;
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             Query query = session.getNamedQuery("getUser")
@@ -90,7 +90,7 @@ public class UserRepository implements UserDao {
                 log.error(e);
             }
         }
-        return user;
+        return user != null ? Optional.of(user) : Optional.empty();
     }
 
     @SuppressWarnings("unchecked")

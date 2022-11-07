@@ -5,7 +5,6 @@ import org.example.model.Friends;
 import org.example.model.Message;
 import org.example.model.User;
 import org.example.repository.FriendDao;
-import org.example.repository.FriendRequestDao;
 import org.example.repository.message.MessageDao;
 
 import java.util.List;

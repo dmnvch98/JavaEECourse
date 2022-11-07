@@ -1,5 +1,6 @@
 package org.example.listener;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import org.example.repository.*;
 import org.example.repository.message.MessageDao;
 import org.example.repository.message.MessageRepository;
@@ -13,6 +14,12 @@ import org.hibernate.cfg.Configuration;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+
+import java.nio.charset.StandardCharsets;
+
+import java.security.SecureRandom;
+
+import at.favre.lib.crypto.bcrypt.BCrypt.Hasher;
 
 @WebListener
 public class DependencyInitializationContextListener implements ServletContextListener {
@@ -31,9 +38,13 @@ public class DependencyInitializationContextListener implements ServletContextLi
         FriendDao friendRepository = new FriendRepository(sessionFactory);
         FriendService friendService = new FriendService(friendRepository, messageDto);
 
+        String secret = "SECRET";
+        Hasher hasher = BCrypt.with(new SecureRandom(secret.getBytes(StandardCharsets.UTF_8)));
+
         sce.getServletContext().setAttribute("userService", userService);
         sce.getServletContext().setAttribute("friendRequestService", friendRequestService);
         sce.getServletContext().setAttribute("friendService", friendService);
         sce.getServletContext().setAttribute("messageService", messageService);
+        sce.getServletContext().setAttribute("hasher", hasher);
     }
 }

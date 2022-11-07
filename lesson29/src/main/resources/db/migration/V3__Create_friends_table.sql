@@ -5,6 +5,6 @@ create table friends (
                          primary key (id)
 );
 insert into friends (first_user, second_user)
-values (2, 4);
+values (1, 2);
 insert into friends (first_user, second_user)
-values (3, 4);
+values (3, 2);

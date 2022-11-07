@@ -33,7 +33,7 @@ public class UserServiceTest {
         final String role = "any_role";
         final Date creationDate = new Date();
 
-        given(repository.isExist(username, password)).willReturn(true);
+        given(repository.isExist(username)).willReturn(true);
 
         final IOException actual = assertThrows(
                 IOException.class, () -> sut.save(username, password, role, creationDate));
@@ -49,7 +49,7 @@ public class UserServiceTest {
         final String role = "any_role";
         final Date creationDate = new Date();
 
-        given(repository.isExist(username, password)).willReturn(false);
+        given(repository.isExist(username)).willReturn(false);
 
         assertDoesNotThrow(() -> sut.save(username, password, role, creationDate));
     }

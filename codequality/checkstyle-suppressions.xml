@@ -10,4 +10,5 @@
     <suppress checks="HiddenField" files="."/>
     <suppress checks="LineLength" files="."/>
     <suppress checks="AvoidStarImport" files="."/>
+    <suppress checks="MemberName" files="."/>
 </suppressions>

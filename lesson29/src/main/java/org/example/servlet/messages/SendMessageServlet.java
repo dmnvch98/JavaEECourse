@@ -39,7 +39,7 @@ public class SendMessageServlet extends HttpServlet {
     @Override
     protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws IOException {
         messageFacade.sendMessage(req);
-        resp.sendRedirect(req.getContextPath() + "/message?recipient_user=" +
-                req.getSession().getAttribute("recipient_message_user"));
+        resp.sendRedirect(req.getContextPath() + "/message?recipient_user="
+                + req.getSession().getAttribute("recipient_message_user"));
     }
 }

@@ -7,4 +7,4 @@ create table friendRequest (
 insert into friendRequest(approver_user_id, requester_user_id)
 values (1 ,2);
 insert into friendRequest(approver_user_id, requester_user_id)
-values (5 ,3);
+values (2 ,3);
