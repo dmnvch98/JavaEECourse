@@ -1,7 +1,6 @@
 package org.example.servlet.messages;
 
 import lombok.extern.log4j.Log4j2;
-
 import org.example.facades.MessageFacade;
 import org.example.service.MessageService;
 import org.example.service.UserService;
