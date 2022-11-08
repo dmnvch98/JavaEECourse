@@ -17,6 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <pmd.maven.plugin.version>3.19.0</pmd.maven.plugin.version>
         <spotbugs.maven.plugin.version>4.7.1.1</spotbugs.maven.plugin.version>
+        <checkstyle.config.location>../codequality/checkstyle.xml</checkstyle.config.location>
     </properties>
 
     <dependencyManagement>

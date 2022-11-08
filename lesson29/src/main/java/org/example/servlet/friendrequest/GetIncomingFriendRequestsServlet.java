@@ -1,4 +1,4 @@
-package org.example.servlet.friendRequest;
+package org.example.servlet.friendrequest;
 
 import org.example.model.FriendRequest;
 import org.example.service.FriendRequestService;

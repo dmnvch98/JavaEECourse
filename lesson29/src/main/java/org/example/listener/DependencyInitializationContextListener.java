@@ -1,7 +1,12 @@
 package org.example.listener;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import org.example.repository.*;
+import org.example.repository.FriendRequestDao;
+import org.example.repository.FriendRequestRepository;
+import org.example.repository.UserDao;
+import org.example.repository.FriendDao;
+import org.example.repository.FriendRepository;
+import org.example.repository.UserRepository;
 import org.example.repository.message.MessageDao;
 import org.example.repository.message.MessageRepository;
 import org.example.service.FriendRequestService;
