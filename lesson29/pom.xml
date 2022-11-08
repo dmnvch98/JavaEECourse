@@ -235,14 +235,9 @@
                         <id>verify</id>
                         <phase>verify</phase>
                         <configuration>
+                            <configLocation>../codequality/checkstyle.xml</configLocation>
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>true</failsOnError>
-                            <suppressionsLocation>
-                                ../codequality/checkstyle-suppressions.xml
-                            </suppressionsLocation>
-                            <suppressionsFileExpression>
-                                checkstyle.suppressions.file
-                            </suppressionsFileExpression>
                         </configuration>
                         <goals>
                             <goal>check</goal>
