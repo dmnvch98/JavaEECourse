@@ -1,5 +1,6 @@
 package org.example.repository;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.example.model.Friends;
 import org.example.model.User;
@@ -12,13 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
-public class FriendRepository implements FriendDto {
+@RequiredArgsConstructor
+public class FriendRepository implements FriendDao {
 
     private final SessionFactory sessionFactory;
-
-    public FriendRepository(final SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
 
     @Override
     public void addFriend(final User firstUser, final User secondUser) {
@@ -28,7 +26,7 @@ public class FriendRepository implements FriendDto {
             session.save(friends);
             transaction.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
         }
     }
 
@@ -45,7 +43,7 @@ public class FriendRepository implements FriendDto {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<Friends> getFriendsRecords(final User firstUser, final User secondUser) {
+    public List<Friends> getFriends(final User firstUser, final User secondUser) {
         List<Friends> friendsRecords = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -55,7 +53,7 @@ public class FriendRepository implements FriendDto {
             friendsRecords = (List<Friends>) query.getResultList();
             transaction.commit();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e);
         }
         return friendsRecords;
     }

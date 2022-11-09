@@ -8,7 +8,7 @@ import java.util.List;
 public interface MessageDao {
     void saveMessage(Message message);
 
-    List<Message> getUserDialog(User user1, User user2);
+    List<Message> getUserMessages(User user1, User user2);
 
-    void removeDialog(List<Message> dialog);
+    void removeMessages(List<Message> dialog);
 }

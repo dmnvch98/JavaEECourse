@@ -4,12 +4,8 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %5p %t %-5l - %m%n"/>
         </Console>
-        <!--
-            fileName: укажите расположение журнала и имя журнала.
-                         filePattern: укажите расположение и имя журнала резервного копирования.
-        -->
-        <RollingFile name="RollingFile" fileName="lesson27\mylogger.log"
-                     filePattern="lesson27\log4j2-xml-$${date:yyyy-MM}\log4j2-xml-%d{yyyy-MM-dd}-%i.log.gz">
+        <RollingFile name="RollingFile" fileName="lesson29\mylogger.log"
+                     filePattern="lesson29\log4j2-xml-$${date:yyyy-MM}\log4j2-xml-%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %5p %t %-5l - %m%n"/>
             <SizeBasedTriggeringPolicy size="5 MB" />
         </RollingFile>

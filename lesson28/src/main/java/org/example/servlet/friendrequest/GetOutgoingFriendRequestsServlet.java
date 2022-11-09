@@ -1,6 +1,5 @@
-package org.example.servlet.friendRequest;
+package org.example.servlet.friendrequest;
 
-import lombok.extern.log4j.Log4j2;
 import org.example.model.FriendRequest;
 import org.example.service.FriendRequestService;
 
@@ -11,15 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet("/removefriendsrequest")
-@Log4j2
-public class RemoveFriendRequestServlet extends HttpServlet {
+@WebServlet("/getoutgoingfriendrequests")
+public class GetOutgoingFriendRequestsServlet extends HttpServlet {
     private FriendRequestService friendRequestService;
 
     @Override
     public void init(final ServletConfig config) throws ServletException {
-        super.init();
+        super.init(config);
         friendRequestService = (FriendRequestService) config
                 .getServletContext()
                 .getAttribute("friendRequestService");
@@ -27,13 +26,14 @@ public class RemoveFriendRequestServlet extends HttpServlet {
 
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
-        int friendRequestId = Integer.parseInt(req.getParameter("friendrequestid"));
-        FriendRequest friendRequest = friendRequestService.getFriendRequest(friendRequestId);
+        String currentUsername = (String) req.getSession().getAttribute("username");
+        List<FriendRequest> outgoingFriendRequests = friendRequestService.getOutgoingFriendRequests(currentUsername);
+        req.setAttribute("outgoingFriendRequests", outgoingFriendRequests);
+        getServletContext().getRequestDispatcher("/view/outgoing_friend_requests.jsp").forward(req, resp);
+    }
 
-        log.info(friendRequest.getApproveUser() + " declined " + friendRequest.getRequestUser() + "'s friend request");
-
-        friendRequestService.deleteRequest(friendRequest);
-
-        resp.sendRedirect(req.getContextPath() + "/allusers");
+    @Override
+    protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
     }
 }

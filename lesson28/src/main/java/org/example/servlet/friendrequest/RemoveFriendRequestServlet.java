@@ -1,4 +1,4 @@
-package org.example.servlet.friendRequest;
+package org.example.servlet.friendrequest;
 
 import lombok.extern.log4j.Log4j2;
 import org.example.model.FriendRequest;

@@ -17,6 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <pmd.maven.plugin.version>3.19.0</pmd.maven.plugin.version>
         <spotbugs.maven.plugin.version>4.7.1.1</spotbugs.maven.plugin.version>
+        <checkstyle.config.location>../codequality/checkstyle.xml</checkstyle.config.location>
     </properties>
 
     <dependencyManagement>
@@ -45,6 +46,11 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>at.favre.lib</groupId>
+            <artifactId>bcrypt</artifactId>
+            <version>0.9.0</version>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -230,14 +236,9 @@
                         <id>verify</id>
                         <phase>verify</phase>
                         <configuration>
+                            <configLocation>../codequality/checkstyle.xml</configLocation>
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>true</failsOnError>
-                            <suppressionsLocation>
-                                ../codequality/checkstyle-suppressions.xml
-                            </suppressionsLocation>
-                            <suppressionsFileExpression>
-                                checkstyle.suppressions.file
-                            </suppressionsFileExpression>
                         </configuration>
                         <goals>
                             <goal>check</goal>

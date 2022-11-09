@@ -7,14 +7,9 @@ create table users (
                        primary key (id)
 );
 
-
 INSERT INTO users (created_at, password, role, username)
-VALUES ('2022-10-24 00:00:00.000000', 'password','USER', 'Andrey');
+VALUES ('2022-10-24 00:00:00.000000', '$2a$12$8Sr2wtfcp3zhZ4x44lMwCuS//WNVLYVRsSlOHQcOXoLNJWH/BSvvG','USER', 'masha');
 INSERT INTO users (created_at, password, role, username)
-VALUES ('2022-10-24 00:00:00.000000', 'password','USER', 'Yauhen');
+VALUES ('2022-10-24 00:00:00.000000', '$2a$12$dJbfI8BzMhCOkzp/PluY4OupoBRpFjat8W6rbjmPg89X1j1rnrr8y','USER', 'pasha');
 INSERT INTO users (created_at, password, role, username)
-VALUES ('2022-10-24 00:00:00.000000', 'password','USER', 'Masha');
-INSERT INTO users (created_at, password, role, username)
-VALUES ('2022-10-24 00:00:00.000000', 'password','USER', 'Glasha');
-INSERT INTO users (created_at, password, role, username)
-VALUES ('2022-10-24 00:00:00.000000', 'admin','USER', 'admin');
+VALUES ('2022-10-24 00:00:00.000000', '$2a$12$MQpT6LyFH36ISF5XyEGyWeKsQVlQh70MYpogqm7ZbKRKti/wDwXzm','USER', 'admin');

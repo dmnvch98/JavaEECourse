@@ -1,4 +1,4 @@
-package org.example.servlet.friendRequest;
+package org.example.servlet.friendrequest;
 
 import org.example.model.FriendRequest;
 import org.example.service.FriendRequestService;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/getoutgoingfriendrequests")
-public class GetOutgoingFriendRequestsServlet extends HttpServlet {
+@WebServlet("/getincomingfriendrequests")
+public class GetIncomingFriendRequestsServlet extends HttpServlet {
     private FriendRequestService friendRequestService;
 
     @Override
@@ -27,13 +27,15 @@ public class GetOutgoingFriendRequestsServlet extends HttpServlet {
     @Override
     protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
         String currentUsername = (String) req.getSession().getAttribute("username");
-        List<FriendRequest> outgoingFriendRequests = friendRequestService.getOutgoingFriendRequests(currentUsername);
-        req.setAttribute("outgoingFriendRequests", outgoingFriendRequests);
-        getServletContext().getRequestDispatcher("/view/outgoing_friend_requests.jsp").forward(req, resp);
+        List<FriendRequest> incomingFriendRequests = friendRequestService.getIncomingFriendRequests(currentUsername);
+        req.setAttribute("incomingFriendRequests", incomingFriendRequests);
+        getServletContext().getRequestDispatcher("/view/incoming_friend_requests.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
     }
+
+
 }
